@@ -1,6 +1,7 @@
 import { requireAdminSession } from "@/lib/admin-auth";
 import { getLeads, type LeadRecord } from "@/lib/leads";
-import { logoutAction } from "./actions";
+import { deleteLeadAction, logoutAction } from "./actions";
+import { DeleteLeadButton } from "./DeleteLeadButton";
 
 const sourceLabel: Record<LeadRecord["source"], string> = {
   calculator: "Công cụ tính chi phí",
@@ -78,6 +79,7 @@ export default async function AdminLeadsPage() {
               <th className="px-4 py-3">Email</th>
               <th className="px-4 py-3">Địa chỉ</th>
               <th className="px-4 py-3">Chi tiết</th>
+              <th className="px-4 py-3">Thao tác</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -108,11 +110,14 @@ export default async function AdminLeadsPage() {
                 </td>
                 <td className="max-w-[200px] px-4 py-3 text-slate-600">{lead.address || "-"}</td>
                 <td className="px-4 py-3">{renderDetail(lead)}</td>
+                <td className="whitespace-nowrap px-4 py-3">
+                  <DeleteLeadButton id={lead.id} action={deleteLeadAction} />
+                </td>
               </tr>
             ))}
             {leads.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-4 py-10 text-center text-slate-400">
+                <td colSpan={8} className="px-4 py-10 text-center text-slate-400">
                   Chưa có khách hàng nào để lại thông tin.
                 </td>
               </tr>

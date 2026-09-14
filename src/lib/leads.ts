@@ -35,6 +35,14 @@ export async function getLeads(): Promise<LeadRecord[]> {
   }
 }
 
+export async function deleteLead(id: string): Promise<void> {
+  await ensureStore();
+  const raw = await readFile(LEADS_FILE, "utf-8");
+  const list: LeadRecord[] = JSON.parse(raw);
+  const filtered = list.filter((lead) => lead.id !== id);
+  await writeFile(LEADS_FILE, JSON.stringify(filtered, null, 2), "utf-8");
+}
+
 export async function saveLead(lead: Omit<LeadRecord, "id" | "createdAt">): Promise<LeadRecord> {
   await ensureStore();
 
