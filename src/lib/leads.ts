@@ -25,6 +25,16 @@ async function ensureStore() {
   }
 }
 
+export async function getLeads(): Promise<LeadRecord[]> {
+  await ensureStore();
+  const raw = await readFile(LEADS_FILE, "utf-8");
+  try {
+    return JSON.parse(raw) as LeadRecord[];
+  } catch {
+    return [];
+  }
+}
+
 export async function saveLead(lead: Omit<LeadRecord, "id" | "createdAt">): Promise<LeadRecord> {
   await ensureStore();
 
