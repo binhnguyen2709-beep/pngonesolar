@@ -130,9 +130,10 @@ function getProductOrThrow(slug: string): Product {
   return product;
 }
 
-// Chi phí nhân công + khung giá đỡ + dây cáp + tủ điện..., đơn giá đồng/kWp - THAM KHẢO,
-// nên cập nhật theo chi phí thi công thực tế của PNG ONE SOLAR (chưa có trong bảng giá vật tư).
-const LABOR_COST_PER_KWP = 5_800_000;
+// Chi phí nhân công + khung giá đỡ + dây cáp + tủ điện... chiếm 15% TỔNG chi phí đầu tư
+// (không phải 15% giá thiết bị) - theo yêu cầu của PNG ONE SOLAR. Tức là:
+//   laborCost = 15% × (equipmentCost + laborCost)  =>  laborCost = equipmentCost × 0.15 / 0.85
+const LABOR_COST_PERCENTAGE = 0.15;
 
 const CO2_KG_PER_KWH = 0.6768; // hệ số phát thải lưới điện Việt Nam (tấn CO2/MWh quy đổi)
 
@@ -232,15 +233,15 @@ export function calculateSolarSystem(input: CalculatorInput): CalculatorResult {
   // 4. Pin lưu trữ: dùng đúng sản phẩm khách chọn (mặc định = đề xuất tự động theo % buổi tối).
   const batteryProduct = batterySlug ? getProductOrThrow(batterySlug) : null;
 
-  // 5. Chi phí = giá tấm pin + giá biến tần + giá pin lưu trữ (theo bảng giá CiTiSOLAR) + công lắp đặt.
+  // 5. Chi phí = giá tấm pin + giá biến tần + giá pin lưu trữ (theo bảng giá CiTiSOLAR) + công lắp đặt
+  // (= 15% tổng chi phí đầu tư, suy ra từ chi phí thiết bị).
   const panelCostVnd = panelCount * panelUnitPrice;
   const inverterCostVnd = inverterProduct ? inverterProduct.price! : 0;
   const batteryCostVnd = batteryProduct ? batteryProduct.price! : 0;
-  const laborCostVnd = Math.round(actualKwp * LABOR_COST_PER_KWP);
+  const equipmentCostVnd = panelCostVnd + inverterCostVnd + batteryCostVnd;
+  const laborCostVnd = Math.round(equipmentCostVnd * (LABOR_COST_PERCENTAGE / (1 - LABOR_COST_PERCENTAGE)));
 
-  const estimatedInvestmentVnd = exceedsCatalog
-    ? 0
-    : panelCostVnd + inverterCostVnd + batteryCostVnd + laborCostVnd;
+  const estimatedInvestmentVnd = exceedsCatalog ? 0 : equipmentCostVnd + laborCostVnd;
 
   const paybackYears =
     !exceedsCatalog && estimatedMonthlySavingsVnd > 0
