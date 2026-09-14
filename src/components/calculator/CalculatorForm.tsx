@@ -2,13 +2,19 @@
 
 import { useMemo, useState, type FormEvent } from "react";
 import {
+  Battery,
+  BatteryCharging,
   Building2,
   CheckCircle2,
+  CircuitBoard,
   Home,
   Leaf,
   Loader2,
   Lock,
+  Moon,
   PhoneCall,
+  RotateCcw,
+  Sun,
   Tractor,
   Wallet,
   Zap,
@@ -19,11 +25,16 @@ import {
   estimateKwhFromBill,
   formatVnd,
   formatVndCompact,
+  getBatteryOptions,
+  suggestBatteryCapacity,
   type CustomerType,
+  type PhaseType,
   type RoofType,
-  type SystemType,
+  type TariffType,
 } from "@/lib/calculator";
 import { siteConfig } from "@/lib/site-config";
+
+const batteryOptions = getBatteryOptions();
 
 type InputMode = "bill" | "kwh";
 type Step = 1 | 2 | 3;
@@ -41,16 +52,30 @@ const roofTypes: { key: RoofType; label: string }[] = [
   { key: "khac", label: "Khác" },
 ];
 
+const tariffTypes: { key: TariffType; label: string }[] = [
+  { key: "sinh-hoat", label: "Điện sinh hoạt" },
+  { key: "kinh-doanh", label: "Điện kinh doanh" },
+  { key: "san-xuat", label: "Điện sản xuất" },
+];
+
+const phaseTypes: { key: PhaseType; label: string }[] = [
+  { key: "1-pha", label: "1 pha" },
+  { key: "3-pha", label: "3 pha" },
+];
+
 export function CalculatorForm() {
   const [step, setStep] = useState<Step>(1);
   const [mode, setMode] = useState<InputMode>("bill");
   const [billVnd, setBillVnd] = useState<string>("2000000");
   const [kwh, setKwh] = useState<string>("700");
   const [customerType, setCustomerType] = useState<CustomerType>("ho-gia-dinh");
-  const [systemType, setSystemType] = useState<SystemType>("on-grid");
+  const [tariffType, setTariffType] = useState<TariffType>("sinh-hoat");
+  const [phase, setPhase] = useState<PhaseType>("1-pha");
   const [roofType, setRoofType] = useState<RoofType>("ton");
   const [offsetPercent, setOffsetPercent] = useState(80);
+  const [daytimePercent, setDaytimePercent] = useState(50);
   const [province, setProvince] = useState("");
+  const [batterySlugOverride, setBatterySlugOverride] = useState<string | null | undefined>(undefined);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -61,13 +86,21 @@ export function CalculatorForm() {
 
   const monthlyKwh = useMemo(() => {
     if (mode === "kwh") return Number(kwh) || 0;
-    return estimateKwhFromBill(Number(billVnd) || 0);
-  }, [mode, kwh, billVnd]);
+    return estimateKwhFromBill(Number(billVnd) || 0, tariffType);
+  }, [mode, kwh, billVnd, tariffType]);
 
   const derivedBill = useMemo(() => {
     if (mode === "bill") return Number(billVnd) || 0;
-    return estimateBillFromKwh(Number(kwh) || 0);
-  }, [mode, billVnd, kwh]);
+    return estimateBillFromKwh(Number(kwh) || 0, tariffType);
+  }, [mode, billVnd, kwh, tariffType]);
+
+  const batterySuggestion = useMemo(
+    () => suggestBatteryCapacity(monthlyKwh, daytimePercent, offsetPercent),
+    [monthlyKwh, daytimePercent, offsetPercent]
+  );
+  const isBatteryAuto = batterySlugOverride === undefined;
+  const batterySlug = isBatteryAuto ? (batterySuggestion.product?.slug ?? null) : batterySlugOverride;
+  const selectedBatteryProduct = batteryOptions.find((p) => p.slug === batterySlug) ?? null;
 
   const result = useMemo(() => {
     if (monthlyKwh <= 0) return null;
@@ -75,11 +108,13 @@ export function CalculatorForm() {
       customerType,
       monthlyKwh,
       offsetPercent,
-      systemType,
+      daytimePercent,
+      batterySlug,
       roofType,
+      phase,
       province,
     });
-  }, [customerType, monthlyKwh, offsetPercent, systemType, roofType, province]);
+  }, [customerType, monthlyKwh, offsetPercent, daytimePercent, batterySlug, roofType, phase, province]);
 
   function handleStep1Submit(e: FormEvent) {
     e.preventDefault();
@@ -117,10 +152,14 @@ export function CalculatorForm() {
           address: address.trim() || undefined,
           meta: {
             customerType,
+            tariffType,
+            phase,
             monthlyKwh,
             derivedBillVnd: derivedBill,
             offsetPercent,
-            systemType,
+            daytimePercent,
+            batterySlug,
+            batteryAutoSuggested: isBatteryAuto,
             roofType,
             province: province || undefined,
             result,
@@ -168,6 +207,43 @@ export function CalculatorForm() {
               </div>
             </div>
 
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <p className="text-sm font-semibold text-navy-950">Giá điện trả hàng tháng</p>
+                <select
+                  value={tariffType}
+                  onChange={(e) => setTariffType(e.target.value as TariffType)}
+                  className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2"
+                >
+                  {tariffTypes.map((t) => (
+                    <option key={t.key} value={t.key}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+                {tariffType !== "sinh-hoat" && (
+                  <p className="mt-1.5 text-xs text-amber-600">
+                    *Đơn giá bình quân tham khảo, giá thực tế theo khung giờ sẽ được tư vấn chính xác khi khảo sát.
+                  </p>
+                )}
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-navy-950">Điện sử dụng</p>
+                <select
+                  value={phase}
+                  onChange={(e) => setPhase(e.target.value as PhaseType)}
+                  className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2"
+                >
+                  {phaseTypes.map((p) => (
+                    <option key={p.key} value={p.key}>
+                      {p.label}
+                    </option>
+                  ))}
+                </select>
+                <p className="mt-1.5 text-xs text-slate-400">*Thông tin tham khảo, không giới hạn công suất đề xuất.</p>
+              </div>
+            </div>
+
             <div>
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-navy-950">Mức tiêu thụ điện hàng tháng</p>
@@ -210,7 +286,7 @@ export function CalculatorForm() {
                     </span>
                   </div>
                   <p className="mt-2 text-xs text-slate-500">
-                    Tương đương ~{monthlyKwh.toLocaleString("vi-VN")} kWh/tháng (ước tính theo biểu giá bậc thang)
+                    Tương đương ~{monthlyKwh.toLocaleString("vi-VN")} kWh/tháng (ước tính)
                   </p>
                 </div>
               ) : (
@@ -235,29 +311,32 @@ export function CalculatorForm() {
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-navy-950">Loại hệ thống mong muốn</p>
-              <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                <button
-                  type="button"
-                  onClick={() => setSystemType("on-grid")}
-                  className={`rounded-2xl border-2 p-4 text-left transition-colors ${
-                    systemType === "on-grid" ? "border-brand-600 bg-brand-50" : "border-slate-100 hover:border-slate-200"
-                  }`}
-                >
-                  <p className="text-sm font-bold text-navy-950">On-grid (hòa lưới)</p>
-                  <p className="mt-1 text-xs text-slate-500">Chi phí thấp hơn, dùng điện lưới ngay khi mất nắng</p>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSystemType("hybrid")}
-                  className={`rounded-2xl border-2 p-4 text-left transition-colors ${
-                    systemType === "hybrid" ? "border-brand-600 bg-brand-50" : "border-slate-100 hover:border-slate-200"
-                  }`}
-                >
-                  <p className="text-sm font-bold text-navy-950">Hybrid (có pin lưu trữ)</p>
-                  <p className="mt-1 text-xs text-slate-500">Duy trì điện khi mất lưới, chi phí đầu tư cao hơn</p>
-                </button>
+              <div className="flex items-center justify-between">
+                <p className="flex items-center gap-1.5 text-sm font-semibold text-navy-950">
+                  Mức sử dụng điện từ 6h đến 18h
+                </p>
+                <span className="text-sm font-bold text-brand-600">{daytimePercent}%</span>
               </div>
+              <input
+                type="range"
+                min={10}
+                max={90}
+                step={5}
+                value={daytimePercent}
+                onChange={(e) => setDaytimePercent(Number(e.target.value))}
+                className="mt-3 w-full accent-brand-600"
+              />
+              <div className="mt-2 flex items-center justify-between text-xs text-slate-500">
+                <span className="flex items-center gap-1">
+                  <Sun className="h-3.5 w-3.5 text-sun-500" /> Ban ngày {daytimePercent}%
+                </span>
+                <span className="flex items-center gap-1">
+                  Buổi tối {100 - daytimePercent}% <Moon className="h-3.5 w-3.5 text-brand-500" />
+                </span>
+              </div>
+              <p className="mt-2 text-xs text-slate-500">
+                Dùng để tính dung lượng pin lưu trữ cần thiết cho phần điện sử dụng ngoài giờ nắng.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -303,6 +382,51 @@ export function CalculatorForm() {
               />
               <p className="mt-2 text-xs text-slate-500">
                 Tỷ lệ sản lượng điện mặt trời dự kiến bù đắp cho nhu cầu sử dụng hàng tháng của bạn.
+              </p>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-1.5">
+                <BatteryCharging className="h-4 w-4 text-brand-600" />
+                <p className="text-sm font-semibold text-navy-950">Bộ lưu điện</p>
+              </div>
+              <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <select
+                  value={batterySlug ?? ""}
+                  onChange={(e) => setBatterySlugOverride(e.target.value || null)}
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2 sm:max-w-sm"
+                >
+                  <option value="">Không lắp</option>
+                  {batteryOptions.map((b) => (
+                    <option key={b.slug} value={b.slug}>
+                      {b.name} - {formatVnd(b.price!)}
+                    </option>
+                  ))}
+                </select>
+                {!isBatteryAuto && (
+                  <button
+                    type="button"
+                    onClick={() => setBatterySlugOverride(undefined)}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700"
+                  >
+                    <RotateCcw className="h-3.5 w-3.5" /> Dùng đề xuất tự động
+                  </button>
+                )}
+              </div>
+              <p className="mt-2 text-xs text-slate-500">
+                {isBatteryAuto ? (
+                  batterySuggestion.product ? (
+                    <>
+                      Hệ thống tự đề xuất <b>{selectedBatteryProduct?.name}</b> (cần tối thiểu ~
+                      {batterySuggestion.neededCapacityKwh} kWh) dựa trên lượng điện buổi tối và mức tự chủ bạn chọn ở
+                      trên - bạn có thể chỉnh lại nếu muốn.
+                    </>
+                  ) : (
+                    "Với mức sử dụng hiện tại, bạn chưa cần lắp pin lưu trữ - bạn có thể tự chọn nếu muốn dự phòng thêm."
+                  )
+                ) : (
+                  "Bạn đã tự chọn pin lưu trữ, khác với mức đề xuất tự động."
+                )}
               </p>
             </div>
 
@@ -412,25 +536,69 @@ export function CalculatorForm() {
               </p>
             </div>
 
+            {result.exceedsCatalog ? (
+              <div className="rounded-2xl bg-amber-50 p-5">
+                <p className="text-sm font-semibold text-amber-900">
+                  Hệ thống của bạn cần công suất {result.actualKwp} kWp - vượt quá dải biến tần 1 pha hiện có (tối đa
+                  10kW). Đây là quy mô cần thiết bị 3 pha / công suất lớn hơn, đội ngũ kỹ thuật sẽ khảo sát và tư vấn
+                  thiết bị phù hợp riêng cho bạn.
+                </p>
+              </div>
+            ) : null}
+
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <ResultCard label="Công suất đề xuất" value={`${result.recommendedKwp} kWp`} icon={Zap} highlight />
-              <ResultCard label="Số lượng tấm pin" value={`${result.panelCount} tấm`} icon={Home} />
+              <ResultCard label="Công suất dàn pin" value={`${result.actualKwp} kWp`} icon={Zap} highlight />
+              <ResultCard label="Số lượng tấm pin" value={`${result.panelCount} tấm (${result.panelProduct.name})`} icon={Home} />
               <ResultCard
-                label="Chi phí đầu tư ước tính"
-                value={`${formatVndCompact(result.estimatedInvestmentLowVnd)} - ${formatVndCompact(
-                  result.estimatedInvestmentHighVnd
-                )}`}
-                icon={Wallet}
+                label="Biến tần"
+                value={result.inverterProduct ? `${result.inverterProduct.name}` : "Cần tư vấn riêng"}
+                icon={CircuitBoard}
               />
-              <ResultCard label="Tiết kiệm mỗi tháng" value={formatVndCompact(result.estimatedMonthlySavingsVnd)} icon={CheckCircle2} />
-              <ResultCard label="Thời gian hoàn vốn" value={`~${result.paybackYears} năm`} icon={Zap} />
+              <ResultCard label="Pin lưu trữ" value={result.batteryProduct ? result.batteryProduct.name : "Không lắp"} icon={Battery} />
+              {!result.exceedsCatalog && (
+                <>
+                  <ResultCard label="Chi phí đầu tư ước tính" value={formatVndCompact(result.estimatedInvestmentVnd)} icon={Wallet} />
+                  <ResultCard label="Tiết kiệm mỗi tháng" value={formatVndCompact(result.estimatedMonthlySavingsVnd)} icon={CheckCircle2} />
+                  <ResultCard label="Thời gian hoàn vốn" value={`~${result.paybackYears} năm`} icon={Zap} />
+                </>
+              )}
               <ResultCard label="Giảm phát thải CO2" value={`~${result.co2ReducedTonPerYear} tấn/năm`} icon={Leaf} />
             </div>
 
+            {!result.exceedsCatalog && (
+              <div className="rounded-2xl border border-slate-100 bg-white p-5">
+                <p className="text-sm font-semibold text-navy-950">Chi tiết chi phí đầu tư</p>
+                <ul className="mt-3 space-y-2 text-sm">
+                  <li className="flex items-center justify-between">
+                    <span className="text-slate-500">Tấm pin ({result.panelCount} tấm)</span>
+                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.panelCostVnd)}</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span className="text-slate-500">Biến tần</span>
+                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.inverterCostVnd)}</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span className="text-slate-500">Pin lưu trữ</span>
+                    <span className="font-semibold text-navy-950">
+                      {result.costBreakdown.batteryCostVnd > 0 ? formatVnd(result.costBreakdown.batteryCostVnd) : "-"}
+                    </span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span className="text-slate-500">Công lắp đặt</span>
+                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.laborCostVnd)}</span>
+                  </li>
+                  <li className="flex items-center justify-between border-t border-slate-100 pt-2 text-base">
+                    <span className="font-bold text-navy-950">Tổng cộng</span>
+                    <span className="font-extrabold text-brand-600">{formatVnd(result.estimatedInvestmentVnd)}</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+
             <div className="rounded-2xl border border-dashed border-slate-200 p-5 text-xs leading-relaxed text-slate-500">
               *Kết quả chỉ mang tính chất tham khảo, dựa trên thông số trung bình về bức xạ mặt trời và biểu giá
-              điện bậc thang hiện hành. Chi phí và công suất thực tế có thể thay đổi sau khi đội ngũ kỹ thuật
-              khảo sát trực tiếp diện tích mái, hướng nắng và nhu cầu sử dụng của bạn.
+              điện hiện hành. Chi phí, công suất dàn pin, biến tần và pin lưu trữ thực tế có thể thay đổi sau khi
+              đội ngũ kỹ thuật khảo sát trực tiếp diện tích mái, hướng nắng và nhu cầu sử dụng của bạn.
             </div>
 
             <a

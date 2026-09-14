@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/Hero";
 import { StatsBar } from "@/components/home/StatsBar";
 import { PainPoints } from "@/components/home/PainPoints";
 import { WhySolar } from "@/components/home/WhySolar";
+import { ScenariosSection } from "@/components/home/ScenariosSection";
 import { ProductsPreview } from "@/components/home/ProductsPreview";
 import { CalculatorPromo } from "@/components/home/CalculatorPromo";
 import { ProcessSteps } from "@/components/home/ProcessSteps";
@@ -17,6 +18,7 @@ export default function Home() {
       <StatsBar />
       <PainPoints />
       <WhySolar />
+      <ScenariosSection />
       <ProductsPreview />
       <CalculatorPromo />
       <ProcessSteps />

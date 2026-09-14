@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Award, HeartHandshake, Target, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -120,6 +121,69 @@ export default function AboutPage() {
               ))}
             </ol>
           </div>
+        </Container>
+      </section>
+
+      <section className="py-20 sm:py-28">
+        <Container>
+          <SectionHeading
+            eyebrow="Hậu thuẫn vững chắc"
+            title="Đối tác sản xuất thiết bị hàng đầu thế giới"
+            description="PNG ONE SOLAR trực tiếp nhập khẩu và phân phối thiết bị từ các nhà sản xuất năng lượng tái tạo uy tín toàn cầu - không phải cơ sở của PNG ONE SOLAR, đây là nơi sản xuất ra biến tần và pin lưu trữ chúng tôi đang cung cấp."
+          />
+
+          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-5">
+            <div className="relative overflow-hidden rounded-3xl lg:col-span-3">
+              <div className="relative h-72 w-full sm:h-96">
+                <Image
+                  src="/partners/austa-factory.jpg"
+                  alt="Nhà máy sản xuất AUSTA / OSDA Group"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/10 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 p-6 sm:p-8">
+                <p className="text-lg font-bold text-white">AUSTA - OSDA Group</p>
+                <p className="mt-1 max-w-md text-sm text-slate-200">
+                  Nhà máy sản xuất biến tần &amp; pin lưu trữ tại Trung Quốc, công suất PV lên đến 12GW, hiện diện tại
+                  150+ quốc gia.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 lg:col-span-2">
+              <div className="relative flex-1 overflow-hidden rounded-3xl">
+                <Image
+                  src="/partners/felicity-campus.jpg"
+                  alt="Khuôn viên nhà máy Felicity Solar"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 30vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5">
+                  <p className="text-base font-bold text-white">Felicity Solar</p>
+                  <p className="mt-0.5 text-xs text-slate-200">Guangzhou, Trung Quốc - 85.000m², 2.000+ nhân sự</p>
+                </div>
+              </div>
+              <div className="relative h-28 overflow-hidden rounded-3xl sm:h-32">
+                <Image
+                  src="/partners/felicity-office.jpg"
+                  alt="Văn phòng Felicity Solar"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 30vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          <p className="mt-6 text-center text-xs text-slate-400">
+            *Hình ảnh do đối tác sản xuất cung cấp trong tài liệu catalogue chính hãng, không phải trụ sở/nhà xưởng
+            của PNG ONE SOLAR.
+          </p>
         </Container>
       </section>
 

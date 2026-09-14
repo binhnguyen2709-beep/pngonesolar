@@ -3,6 +3,7 @@ import { BatteryCharging, Cable, PanelTop, Zap } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/products/ProductCard";
+import { CertificationStrip } from "@/components/products/CertificationStrip";
 import { CtaBanner } from "@/components/shared/CtaBanner";
 import { getProductsByCategory, productCategories, type ProductCategory } from "@/data/products";
 import { siteConfig } from "@/lib/site-config";
@@ -44,6 +45,10 @@ export default function ProductsPage() {
               </a>
             ))}
           </div>
+          <p className="mt-6 text-xs text-slate-400">
+            *Giá niêm yết đã bao gồm VAT, chưa bao gồm công lắp đặt. Giá có thể thay đổi theo thời điểm, vui lòng
+            liên hệ để được báo giá chính xác nhất.
+          </p>
         </Container>
       </section>
 
@@ -72,6 +77,12 @@ export default function ProductsPage() {
           </section>
         );
       })}
+
+      <section className="py-16">
+        <Container>
+          <CertificationStrip />
+        </Container>
+      </section>
 
       <CtaBanner />
     </>
