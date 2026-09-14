@@ -1,9 +1,12 @@
+import { useTranslations } from "next-intl";
 import { ArrowRight, ShieldCheck, Sparkles, TrendingDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/site-config";
 
 export function Hero() {
+  const t = useTranslations("home.hero");
+
   return (
     <section className="relative overflow-hidden bg-navy-950">
       <div className="bg-grid absolute inset-0 opacity-40" />
@@ -21,36 +24,34 @@ export function Hero() {
           <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-brand-200 ring-1 ring-white/10">
               <Sparkles className="h-3.5 w-3.5" />
-              Giải pháp năng lượng mặt trời trọn gói
+              {t("eyebrow")}
             </span>
 
             <h1 className="mt-6 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
-              Cắt giảm đến <span className="text-sun-400">80% tiền điện</span> với hệ áp mái từ {siteConfig.name}
+              {t("titlePrefix")} <span className="text-sun-400">{t("titleHighlight")}</span> {t("titleSuffix")}{" "}
+              {siteConfig.name}
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
-              Chủ động nguồn điện, không còn nơm nớp mỗi khi hóa đơn về tay. Khảo sát, thiết kế, thi công và bảo
-              hành trọn gói bởi đội ngũ kỹ sư giàu kinh nghiệm - cam kết đúng tiến độ, đúng cam kết công suất.
-            </p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">{t("description")}</p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <LinkButton href="/tinh-chi-phi" size="lg">
-                Tính chi phí lắp đặt ngay
+                {t("ctaCalculate")}
                 <ArrowRight className="h-5 w-5" />
               </LinkButton>
               <LinkButton href="/du-an" variant="outline" size="lg">
-                Xem dự án đã thực hiện
+                {t("ctaProjects")}
               </LinkButton>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 text-sm text-slate-300">
                 <TrendingDown className="h-5 w-5 text-sun-400" />
-                Hoàn vốn 4-6 năm
+                {t("payback")}
               </div>
               <div className="flex items-center gap-2 text-sm text-slate-300">
                 <ShieldCheck className="h-5 w-5 text-sun-400" />
-                Bảo hành đến 30 năm
+                {t("warranty")}
               </div>
             </div>
           </div>
@@ -91,12 +92,12 @@ export function Hero() {
               </svg>
 
               <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white p-4 shadow-2xl sm:-left-10">
-                <p className="text-xs font-medium text-slate-500">Sản lượng điện hôm nay</p>
+                <p className="text-xs font-medium text-slate-500">{t("todayOutput")}</p>
                 <p className="mt-1 text-2xl font-bold text-navy-950">
                   48.2 <span className="text-sm font-medium text-slate-400">kWh</span>
                 </p>
                 <p className="mt-1 flex items-center gap-1 text-xs font-semibold text-emerald-600">
-                  <TrendingDown className="h-3 w-3 rotate-180" /> +12% so với hôm qua
+                  <TrendingDown className="h-3 w-3 rotate-180" /> +12% {t("vsYesterday")}
                 </p>
               </div>
             </div>

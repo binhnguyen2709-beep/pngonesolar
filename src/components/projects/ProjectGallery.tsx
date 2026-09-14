@@ -1,20 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { projectCategoryLabels, projects, type ProjectCategory } from "@/data/projects";
+import { projectCategoryLabelKeys, projects, type ProjectCategory } from "@/data/projects";
 
-const filters: { key: ProjectCategory | "all"; label: string }[] = [
-  { key: "all", label: "Tất cả" },
-  ...(Object.keys(projectCategoryLabels) as ProjectCategory[]).map((key) => ({
-    key,
-    label: projectCategoryLabels[key],
-  })),
-];
+const categoryOrder = Object.keys(projectCategoryLabelKeys) as ProjectCategory[];
 
 export function ProjectGallery() {
+  const t = useTranslations("projects");
   const [active, setActive] = useState<ProjectCategory | "all">("all");
   const filtered = active === "all" ? projects : projects.filter((p) => p.category === active);
+
+  const filters: { key: ProjectCategory | "all"; label: string }[] = [
+    { key: "all", label: t("filterAll") },
+    ...categoryOrder.map((key) => ({ key, label: t(`categories.${projectCategoryLabelKeys[key]}`) })),
+  ];
 
   return (
     <div>

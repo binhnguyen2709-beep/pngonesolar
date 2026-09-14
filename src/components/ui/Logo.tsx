@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/site-config";
+import { useTranslations } from "next-intl";
 
 export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
   return (
@@ -10,6 +10,8 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
 }
 
 export function Logo({ light = false }: { light?: boolean }) {
+  const t = useTranslations("brand");
+
   return (
     <span className="flex items-center gap-2.5">
       <LogoMark />
@@ -18,7 +20,7 @@ export function Logo({ light = false }: { light?: boolean }) {
           PNG ONE <span className="text-brand-500">SOLAR</span>
         </span>
         <span className={`text-[11px] font-medium tracking-wide ${light ? "text-slate-300" : "text-slate-500"}`}>
-          {siteConfig.slogan}
+          {t("slogan")}
         </span>
       </span>
     </span>

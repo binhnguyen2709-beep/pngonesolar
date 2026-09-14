@@ -1,26 +1,24 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Liên hệ",
-  description: `Liên hệ ${siteConfig.name} để được khảo sát và tư vấn miễn phí giải pháp điện năng lượng mặt trời áp mái.`,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("contact");
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getTranslations("contact");
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(siteConfig.mapEmbedQuery)}&output=embed`;
 
   return (
     <section className="bg-slate-50 py-16 sm:py-24">
       <Container>
-        <SectionHeading
-          eyebrow="Liên hệ"
-          title="Sẵn sàng tư vấn giải pháp phù hợp với bạn"
-          description="Để lại thông tin qua form bên dưới hoặc liên hệ trực tiếp qua hotline / Zalo, đội ngũ PNG ONE SOLAR luôn sẵn sàng hỗ trợ."
-        />
+        <SectionHeading eyebrow={t("hero.eyebrow")} title={t("hero.title")} description={t("hero.description")} />
 
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -35,7 +33,7 @@ export default function ContactPage() {
                     <MapPin className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-navy-950">Địa chỉ văn phòng</p>
+                    <p className="text-sm font-semibold text-navy-950">{t("info.address")}</p>
                     <p className="mt-1 text-sm text-slate-600">{siteConfig.address}</p>
                   </div>
                 </li>
@@ -44,7 +42,7 @@ export default function ContactPage() {
                     <Phone className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-navy-950">Hotline</p>
+                    <p className="text-sm font-semibold text-navy-950">{t("info.hotline")}</p>
                     <a href={`tel:${siteConfig.hotlineRaw}`} className="mt-1 block text-sm text-brand-600 hover:underline">
                       {siteConfig.hotline}
                     </a>
@@ -55,7 +53,7 @@ export default function ContactPage() {
                     <Mail className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-navy-950">Email</p>
+                    <p className="text-sm font-semibold text-navy-950">{t("info.email")}</p>
                     <a href={`mailto:${siteConfig.email}`} className="mt-1 block text-sm text-brand-600 hover:underline">
                       {siteConfig.email}
                     </a>
@@ -66,7 +64,7 @@ export default function ContactPage() {
                     <Clock className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-navy-950">Giờ làm việc</p>
+                    <p className="text-sm font-semibold text-navy-950">{t("info.workingHours")}</p>
                     <p className="mt-1 text-sm text-slate-600">{siteConfig.workingHours}</p>
                   </div>
                 </li>
@@ -75,7 +73,7 @@ export default function ContactPage() {
 
             <div className="overflow-hidden rounded-3xl border border-slate-100 shadow-sm">
               <iframe
-                title="Bản đồ văn phòng PNG ONE SOLAR"
+                title={siteConfig.name}
                 src={mapSrc}
                 width="100%"
                 height="280"

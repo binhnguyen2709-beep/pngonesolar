@@ -1,7 +1,6 @@
 export const siteConfig = {
   name: "PNG ONE SOLAR",
   fullName: "Công ty CP Năng lượng PNG ONE SOLAR",
-  slogan: "Chủ động nguồn điện - Tối ưu chi phí",
   description:
     "PNG ONE SOLAR thi công, lắp đặt hệ thống điện năng lượng mặt trời áp mái trọn gói cho hộ gia đình, nhà xưởng và doanh nghiệp trên toàn quốc.",
   // TODO: Cập nhật thông tin thật của doanh nghiệp trước khi vận hành chính thức.
@@ -19,19 +18,9 @@ export const siteConfig = {
   },
   mapEmbedQuery: "PNG Tower, Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh",
   stats: [
-    { label: "Năm kinh nghiệm", value: 8 },
-    { label: "Dự án đã bàn giao", value: 1250 },
-    { label: "MWp đã lắp đặt", value: 42 },
-    { label: "Tỉnh thành phục vụ", value: 32 },
-  ],
+    { key: "experience", value: 8 },
+    { key: "projects", value: 1250 },
+    { key: "mwp", value: 42 },
+    { key: "provinces", value: 32 },
+  ] as const,
 };
-
-export const navLinks = [
-  { href: "/", label: "Trang chủ" },
-  { href: "/gioi-thieu", label: "Giới thiệu" },
-  { href: "/san-pham", label: "Sản phẩm" },
-  { href: "/du-an", label: "Dự án" },
-  { href: "/tinh-chi-phi", label: "Tính chi phí" },
-  { href: "/kien-thuc", label: "Kiến thức" },
-  { href: "/lien-he", label: "Liên hệ" },
-];

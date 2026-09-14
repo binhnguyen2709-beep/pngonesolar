@@ -1,0 +1,412 @@
+{
+  "brand": {
+    "slogan": "Chủ động nguồn điện - Tối ưu chi phí",
+    "defaultTitle": "Thi công điện năng lượng mặt trời áp mái"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "products": "Sản phẩm",
+    "projects": "Dự án",
+    "calculator": "Tính chi phí",
+    "knowledge": "Kiến thức",
+    "contact": "Liên hệ",
+    "getQuote": "Nhận báo giá miễn phí"
+  },
+  "footer": {
+    "quickLinks": "Liên kết nhanh",
+    "products": "Sản phẩm",
+    "contactInfo": "Thông tin liên hệ",
+    "rights": "Đã đăng ký bản quyền",
+    "taxCode": "Mã số thuế",
+    "designedBy": "Thiết kế & vận hành bởi đội ngũ PNG ONE SOLAR"
+  },
+  "common": {
+    "learnMore": "Xem thêm",
+    "viewAll": "Xem tất cả",
+    "viewDetail": "Xem chi tiết",
+    "callNow": "Gọi ngay",
+    "contactZalo": "Chat Zalo"
+  },
+  "stats": {
+    "experience": "Năm kinh nghiệm",
+    "projects": "Dự án đã bàn giao",
+    "mwp": "MWp đã lắp đặt",
+    "provinces": "Tỉnh thành phục vụ"
+  },
+  "ctaBanner": {
+    "title": "Sẵn sàng chủ động nguồn điện cho gia đình, doanh nghiệp của bạn?",
+    "description": "Để lại thông tin hoặc gọi ngay hotline, đội ngũ kỹ thuật PNG ONE SOLAR sẽ khảo sát và tư vấn miễn phí trong vòng 24 giờ.",
+    "cta": "Nhận báo giá miễn phí"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Giải pháp năng lượng mặt trời trọn gói",
+      "titlePrefix": "Cắt giảm đến",
+      "titleHighlight": "80% tiền điện",
+      "titleSuffix": "với hệ áp mái từ",
+      "description": "Chủ động nguồn điện, không còn nơm nớp mỗi khi hóa đơn về tay. Khảo sát, thiết kế, thi công và bảo hành trọn gói bởi đội ngũ kỹ sư giàu kinh nghiệm - cam kết đúng tiến độ, đúng cam kết công suất.",
+      "ctaCalculate": "Tính chi phí lắp đặt ngay",
+      "ctaProjects": "Xem dự án đã thực hiện",
+      "payback": "Hoàn vốn 4-6 năm",
+      "warranty": "Bảo hành đến 30 năm",
+      "todayOutput": "Sản lượng điện hôm nay",
+      "vsYesterday": "so với hôm qua"
+    },
+    "painPoints": {
+      "eyebrow": "Vấn đề bạn đang gặp phải",
+      "title": "Những nỗi lo quen thuộc với hóa đơn tiền điện mỗi tháng",
+      "description": "Nếu bạn đang gặp một trong những vấn đề dưới đây, đã đến lúc chủ động nguồn điện cho gia đình và doanh nghiệp của mình.",
+      "items": [
+        {
+          "title": "Hóa đơn tiền điện tăng vọt mỗi mùa nắng nóng",
+          "description": "Giá điện sinh hoạt tính theo bậc thang - dùng càng nhiều, giá mỗi kWh càng đắt. Bật điều hòa cả ngày hè, hóa đơn có thể tăng gấp 2-3 lần so với ngày thường."
+        },
+        {
+          "title": "Cúp điện, sụt áp làm gián đoạn sinh hoạt và sản xuất",
+          "description": "Mất điện đột ngột khiến hàng hóa trong kho lạnh hư hỏng, dây chuyền sản xuất ngưng trệ, gây thiệt hại tiền bạc không đáng có."
+        },
+        {
+          "title": "Lo ngại đơn vị thi công thiếu uy tín",
+          "description": "Thi công ẩu gây thấm dột mái, thiết bị trôi nổi không rõ nguồn gốc, cam kết bảo hành mập mờ khiến nhiều gia đình, doanh nghiệp e ngại đầu tư."
+        },
+        {
+          "title": "Mái tôn hấp nhiệt, không gian sống oi bức",
+          "description": "Mái nhà, nhà xưởng hấp thụ nhiệt lớn vào ban ngày khiến không gian bên dưới nóng bức, tốn thêm chi phí làm mát."
+        }
+      ],
+      "bannerPrefix": "PNG ONE SOLAR giúp bạn",
+      "bannerHighlight": "chủ động nguồn điện",
+      "bannerSuffix": "biến chi phí điện hàng tháng thành khoản đầu tư sinh lời."
+    },
+    "whySolar": {
+      "eyebrow": "Vì sao nên đầu tư ngay",
+      "title": "Điện mặt trời áp mái - khoản đầu tư sinh lời, không phải chi phí",
+      "description": "Đây không đơn thuần là xu hướng, mà là giải pháp tài chính thông minh giúp bạn kiểm soát chi phí điện trong dài hạn.",
+      "items": [
+        { "title": "Tiết kiệm chi phí điện rõ rệt", "description": "Giảm đến 80-90% hóa đơn tiền điện hàng tháng, hoàn vốn đầu tư chỉ sau 4-6 năm trong khi hệ thống vận hành hơn 25 năm." },
+        { "title": "Chủ động nguồn điện, an tâm vận hành", "description": "Kết hợp pin lưu trữ giúp duy trì điện cho các thiết bị thiết yếu ngay cả khi lưới điện gặp sự cố hoặc cúp điện luân phiên." },
+        { "title": "Tăng giá trị bất động sản", "description": "Nhà, xưởng có hệ thống điện mặt trời được đánh giá cao hơn khi mua bán, cho thuê nhờ chi phí vận hành thấp và hình ảnh hiện đại." },
+        { "title": "Góp phần bảo vệ môi trường", "description": "Sử dụng năng lượng sạch, giảm phát thải CO2, đồng thời đáp ứng các tiêu chuẩn ESG ngày càng được đối tác, khách hàng quốc tế coi trọng." }
+      ]
+    },
+    "scenarios": {
+      "eyebrow": "Phù hợp với mọi mô hình",
+      "title": "Từ nhà ở đến trang trại - giải pháp nào cũng có",
+      "description": "Dù là hộ gia đình, hộ kinh doanh nhỏ hay trang trại sản xuất, PNG ONE SOLAR đều có phương án lắp đặt phù hợp với diện tích mái và ngân sách của bạn.",
+      "items": {
+        "houses": "Nhà ở gia đình",
+        "cabins": "Nhà vườn / biệt lập",
+        "stores": "Cửa hàng kinh doanh",
+        "offices": "Văn phòng",
+        "farms": "Trang trại / nông nghiệp"
+      }
+    },
+    "productsPreview": {
+      "eyebrow": "Thiết bị chính hãng",
+      "title": "Hệ sinh thái thiết bị điện mặt trời đồng bộ",
+      "description": "Tấm pin, biến tần, pin lưu trữ và phụ kiện được lựa chọn kỹ lưỡng, đạt chuẩn quốc tế IEC, đảm bảo hiệu suất và độ bền lâu dài.",
+      "viewAll": "Xem tất cả sản phẩm",
+      "viewDetail": "Xem chi tiết"
+    },
+    "calculatorPromo": {
+      "title": "Ước tính chi phí lắp đặt chỉ trong 1 phút",
+      "description": "Công cụ tính toán thông minh giúp bạn nắm được công suất phù hợp và chi phí đầu tư dự kiến, trước khi đội ngũ kỹ thuật khảo sát thực tế và đưa ra báo giá chính xác.",
+      "bullets": [
+        "Nhập số tiền điện hoặc số kWh tiêu thụ hàng tháng",
+        "Nhận ngay công suất hệ thống và chi phí đầu tư ước tính",
+        "Xem thời gian hoàn vốn và mức tiết kiệm hàng tháng"
+      ],
+      "cta": "Tính chi phí ngay",
+      "recommendedPower": "Công suất đề xuất",
+      "monthlySavings": "Tiết kiệm / tháng",
+      "payback": "Hoàn vốn",
+      "exampleSavings": "~2,1 triệu đ",
+      "examplePayback": "~5,2 năm",
+      "disclaimer": "*Số liệu minh họa, kết quả thực tế tùy nhu cầu của bạn"
+    },
+    "process": {
+      "eyebrow": "Quy trình làm việc",
+      "title": "Minh bạch từng bước - từ khảo sát đến bàn giao",
+      "steps": [
+        { "title": "Khảo sát & tư vấn miễn phí", "description": "Kỹ sư khảo sát mái nhà, phân tích hóa đơn tiền điện và nhu cầu sử dụng thực tế." },
+        { "title": "Thiết kế & báo giá chi tiết", "description": "Đề xuất phương án công suất tối ưu, minh bạch chi phí và thời gian hoàn vốn dự kiến." },
+        { "title": "Ký hợp đồng", "description": "Hợp đồng rõ ràng về tiến độ, thiết bị, chính sách bảo hành - không phát sinh chi phí ẩn." },
+        { "title": "Thi công lắp đặt", "description": "Đội ngũ kỹ thuật thi công đúng tiêu chuẩn an toàn, đảm bảo tiến độ cam kết." },
+        { "title": "Nghiệm thu & đấu nối", "description": "Kiểm tra vận hành, hỗ trợ thủ tục đấu nối với điện lực, bàn giao hồ sơ đầy đủ." },
+        { "title": "Bảo hành & hỗ trợ vận hành", "description": "Giám sát sản lượng qua ứng dụng, bảo trì định kỳ và hỗ trợ kỹ thuật trọn vòng đời sản phẩm." }
+      ]
+    },
+    "projectsPreview": {
+      "eyebrow": "Dự án tiêu biểu",
+      "title": "Hơn 1.250 công trình đã bàn giao trên toàn quốc",
+      "description": "Từ hộ gia đình đến nhà xưởng quy mô lớn, mỗi dự án đều được PNG ONE SOLAR thi công cẩn trọng và bàn giao đúng cam kết.",
+      "viewAll": "Xem tất cả dự án"
+    },
+    "testimonials": {
+      "eyebrow": "Khách hàng nói gì",
+      "title": "Hàng nghìn khách hàng đã tin tưởng lựa chọn"
+    },
+    "faqPreview": {
+      "eyebrow": "Giải đáp thắc mắc",
+      "title": "Câu hỏi thường gặp",
+      "description": "Những băn khoăn phổ biến nhất trước khi quyết định lắp đặt điện mặt trời áp mái.",
+      "viewMore": "Xem thêm kiến thức hữu ích"
+    }
+  },
+  "about": {
+    "metaTitle": "Giới thiệu",
+    "metaDescription": "Tìm hiểu về PNG ONE SOLAR - đơn vị thi công điện năng lượng mặt trời áp mái uy tín với đội ngũ kỹ sư giàu kinh nghiệm.",
+    "hero": {
+      "eyebrow": "Về chúng tôi",
+      "title": "PNG ONE SOLAR - Đối tác tin cậy cho hành trình chuyển đổi năng lượng sạch",
+      "description": "Chúng tôi tin rằng mỗi mái nhà, mái xưởng đều có thể trở thành một nhà máy điện thu nhỏ - giúp khách hàng chủ động chi phí và nguồn điện trong dài hạn."
+    },
+    "story": {
+      "eyebrow": "Câu chuyện của chúng tôi",
+      "title": "Từ đội kỹ thuật nhỏ đến đơn vị EPC hàng đầu",
+      "p1": "PNG ONE SOLAR được thành lập bởi đội ngũ kỹ sư điện - điện tử nhiều năm kinh nghiệm trong lĩnh vực năng lượng tái tạo. Xuất phát từ mong muốn giúp các hộ gia đình Việt Nam giảm gánh nặng chi phí điện sinh hoạt, chúng tôi đã không ngừng mở rộng năng lực thi công để phục vụ cả các dự án công nghiệp quy mô lớn.",
+      "p2": "Đến nay, PNG ONE SOLAR tự hào là đối tác được hàng nghìn khách hàng tin tưởng lựa chọn nhờ quy trình làm việc minh bạch, đội ngũ thi công chuyên nghiệp và chính sách bảo hành rõ ràng, dài hạn."
+    },
+    "values": {
+      "eyebrow": "Giá trị cốt lõi",
+      "title": "Điều làm nên sự khác biệt của PNG ONE SOLAR",
+      "items": [
+        { "title": "Minh bạch", "description": "Báo giá rõ ràng, không phát sinh chi phí ẩn, hợp đồng chi tiết từng hạng mục." },
+        { "title": "Chất lượng", "description": "Chỉ sử dụng thiết bị đạt chuẩn quốc tế IEC, có nguồn gốc xuất xứ rõ ràng." },
+        { "title": "Tận tâm", "description": "Đồng hành cùng khách hàng từ tư vấn, thi công đến bảo hành trong suốt vòng đời hệ thống." },
+        { "title": "Chuyên nghiệp", "description": "Đội ngũ kỹ sư được đào tạo bài bản, giàu kinh nghiệm thi công trên mọi loại mái." }
+      ]
+    },
+    "milestones": {
+      "eyebrow": "Hành trình phát triển",
+      "title": "Các cột mốc đáng nhớ",
+      "items": [
+        { "year": "2017", "event": "Thành lập, thi công dự án điện mặt trời áp mái đầu tiên tại TP.HCM" },
+        { "year": "2019", "event": "Mở rộng thị trường ra khu vực Đông Nam Bộ và Tây Nam Bộ" },
+        { "year": "2021", "event": "Vượt mốc 500 dự án hộ gia đình và doanh nghiệp được bàn giao" },
+        { "year": "2023", "event": "Ra mắt trung tâm giám sát vận hành hệ thống từ xa 24/7" },
+        { "year": "2025", "event": "Vượt mốc 1.250 dự án, hiện diện tại hơn 32 tỉnh thành" }
+      ]
+    },
+    "partners": {
+      "eyebrow": "Hậu thuẫn vững chắc",
+      "title": "Đối tác sản xuất thiết bị hàng đầu thế giới",
+      "description": "PNG ONE SOLAR trực tiếp nhập khẩu và phân phối thiết bị từ các nhà sản xuất năng lượng tái tạo uy tín toàn cầu - không phải cơ sở của PNG ONE SOLAR, đây là nơi sản xuất ra biến tần và pin lưu trữ chúng tôi đang cung cấp.",
+      "austaName": "AUSTA - OSDA Group",
+      "austaDesc": "Nhà máy sản xuất biến tần & pin lưu trữ tại Trung Quốc, công suất PV lên đến 12GW, hiện diện tại 150+ quốc gia.",
+      "felicityName": "Felicity Solar",
+      "felicityDesc": "Guangzhou, Trung Quốc - 85.000m², 2.000+ nhân sự",
+      "disclaimer": "*Hình ảnh do đối tác sản xuất cung cấp trong tài liệu catalogue chính hãng, không phải trụ sở/nhà xưởng của PNG ONE SOLAR."
+    }
+  },
+  "products": {
+    "metaTitle": "Sản phẩm",
+    "metaDescription": "Tấm pin năng lượng mặt trời, biến tần (inverter), pin lưu trữ và phụ kiện chính hãng, đạt chuẩn quốc tế IEC.",
+    "hero": {
+      "eyebrow": "Sản phẩm & thiết bị",
+      "title": "Thiết bị đồng bộ, chính hãng - hiệu suất tối ưu, bền bỉ theo thời gian",
+      "description": "PNG ONE SOLAR chỉ lựa chọn thiết bị từ các nhà sản xuất đạt chứng nhận quốc tế IEC 61215/61730, đảm bảo hiệu suất cam kết trong suốt vòng đời sử dụng.",
+      "priceNote": "*Giá niêm yết đã bao gồm VAT, chưa bao gồm công lắp đặt. Giá có thể thay đổi theo thời điểm, vui lòng liên hệ để được báo giá chính xác nhất."
+    },
+    "categories": {
+      "panel": { "title": "Tấm pin năng lượng mặt trời", "description": "Tấm pin công nghệ TOPCon / N-Type Bifacial hiệu suất cao, hai mặt kính, chịu được điều kiện khí hậu nhiệt đới, bảo hành hiệu suất đến 30 năm." },
+      "inverter": { "title": "Biến tần (Inverter)", "description": "Biến tần Hybrid 1 pha áp thấp, tích hợp sẵn khả năng đấu nối pin lưu trữ, giám sát từ xa qua ứng dụng di động." },
+      "battery": { "title": "Pin lưu trữ năng lượng", "description": "Pin Lithium LFP (LiFePO4) an toàn, tuổi thọ cao, lưu trữ điện dư để dùng vào buổi tối hoặc khi mất điện lưới." },
+      "accessory": { "title": "Phụ kiện & khung giá đỡ", "description": "Hệ khung nhôm định hình, ốc vít inox 304 chống ăn mòn, dây cáp DC chuyên dụng đạt chuẩn chống cháy." }
+    },
+    "certs": {
+      "title": "Thiết bị đạt các chứng nhận quốc tế từ nhà sản xuất",
+      "disclaimer": "*Chứng nhận áp dụng cho dòng thiết bị (biến tần, pin lưu trữ) từ nhà sản xuất, không phải chứng nhận riêng của PNG ONE SOLAR."
+    },
+    "perPanel": "/ tấm"
+  },
+  "projects": {
+    "metaTitle": "Dự án đã thực hiện",
+    "metaDescription": "Hơn 1.250 dự án điện năng lượng mặt trời áp mái đã được PNG ONE SOLAR thi công và bàn giao trên toàn quốc.",
+    "hero": {
+      "eyebrow": "Dự án tiêu biểu",
+      "title": "Hơn 1.250 công trình đã bàn giao trên toàn quốc",
+      "description": "Từ hộ gia đình, nhà xưởng đến trang trại nông nghiệp - mỗi dự án là một minh chứng cho chất lượng thi công và cam kết đồng hành lâu dài của PNG ONE SOLAR."
+    },
+    "filterAll": "Tất cả",
+    "capacityLabel": "Công suất",
+    "categories": {
+      "household": "Hộ gia đình",
+      "factory": "Nhà xưởng",
+      "business": "Doanh nghiệp / Văn phòng",
+      "farm": "Trang trại / Nông nghiệp"
+    }
+  },
+  "calculator": {
+    "metaTitle": "Tính chi phí lắp đặt điện mặt trời",
+    "metaDescription": "Ước tính công suất hệ thống, chi phí đầu tư và thời gian hoàn vốn khi lắp đặt điện năng lượng mặt trời áp mái dựa trên mức tiêu thụ điện hàng tháng của bạn.",
+    "hero": {
+      "eyebrow": "Công cụ tính toán",
+      "title": "Ước tính chi phí lắp đặt điện mặt trời áp mái",
+      "description": "Chỉ mất 1 phút để biết công suất phù hợp và chi phí đầu tư dự kiến cho gia đình hoặc doanh nghiệp của bạn. Kết quả chi tiết sẽ hiển thị ngay sau khi bạn để lại thông tin liên hệ."
+    },
+    "steps": { "step1": "Thông tin sử dụng điện", "step2": "Thông tin liên hệ", "step3": "Kết quả ước tính" },
+    "customerType": {
+      "label": "Bạn là",
+      "hoGiaDinh": "Hộ gia đình",
+      "doanhNghiep": "Doanh nghiệp / Văn phòng",
+      "nhaXuong": "Nhà xưởng / Trang trại"
+    },
+    "tariff": {
+      "label": "Giá điện trả hàng tháng",
+      "sinhHoat": "Điện sinh hoạt",
+      "kinhDoanh": "Điện kinh doanh",
+      "sanXuat": "Điện sản xuất",
+      "note": "*Đơn giá bình quân tham khảo, giá thực tế theo khung giờ sẽ được tư vấn chính xác khi khảo sát."
+    },
+    "phase": {
+      "label": "Điện sử dụng",
+      "onePhase": "1 pha",
+      "threePhase": "3 pha",
+      "note": "*Thông tin tham khảo, không giới hạn công suất đề xuất."
+    },
+    "consumption": {
+      "label": "Mức tiêu thụ điện hàng tháng",
+      "byBill": "Theo tiền điện",
+      "byKwh": "Theo số kWh",
+      "billPlaceholder": "VD: 2.000.000",
+      "billUnit": "đ / tháng",
+      "kwhPlaceholder": "VD: 700",
+      "kwhUnit": "kWh / tháng",
+      "equivKwh": "Tương đương ~{value} kWh/tháng (ước tính)",
+      "equivBill": "Tương đương ~{value}/tháng"
+    },
+    "daytime": {
+      "label": "Mức sử dụng điện từ 6h đến 18h",
+      "day": "Ban ngày {value}%",
+      "night": "Buổi tối {value}%",
+      "note": "Dùng để tính dung lượng pin lưu trữ cần thiết cho phần điện sử dụng ngoài giờ nắng."
+    },
+    "roof": {
+      "label": "Loại mái",
+      "ton": "Mái tôn",
+      "bang": "Mái bằng (bê tông)",
+      "ngoi": "Mái ngói",
+      "khac": "Khác"
+    },
+    "province": { "label": "Tỉnh / thành (không bắt buộc)", "placeholder": "VD: TP. Hồ Chí Minh" },
+    "offset": {
+      "label": "Mức độ tự chủ điện mong muốn",
+      "note": "Tỷ lệ sản lượng điện mặt trời dự kiến bù đắp cho nhu cầu sử dụng hàng tháng của bạn."
+    },
+    "battery": {
+      "label": "Bộ lưu điện",
+      "none": "Không lắp",
+      "useAuto": "Dùng đề xuất tự động",
+      "autoNote": "Hệ thống tự đề xuất {product} (cần tối thiểu ~{kwh} kWh) dựa trên lượng điện buổi tối và mức tự chủ bạn chọn ở trên - bạn có thể chỉnh lại nếu muốn.",
+      "noneNeeded": "Với mức sử dụng hiện tại, bạn chưa cần lắp pin lưu trữ - bạn có thể tự chọn nếu muốn dự phòng thêm.",
+      "manualNote": "Bạn đã tự chọn pin lưu trữ, khác với mức đề xuất tự động."
+    },
+    "submitStep1": "Xem kết quả ước tính",
+    "step2Intro": "Vui lòng để lại thông tin liên hệ để nhận ngay kết quả ước tính công suất, chi phí đầu tư và thời gian hoàn vốn. Đội ngũ tư vấn sẽ liên hệ để khảo sát và đưa ra báo giá chính xác.",
+    "form": {
+      "name": "Họ và tên *",
+      "namePlaceholder": "Nguyễn Văn A",
+      "phone": "Số điện thoại *",
+      "phonePlaceholder": "0901 234 567",
+      "email": "Email (không bắt buộc)",
+      "emailPlaceholder": "email@example.com",
+      "address": "Khu vực lắp đặt (không bắt buộc)",
+      "addressPlaceholder": "Số nhà, đường, quận/huyện...",
+      "back": "Quay lại",
+      "submitting": "Đang gửi...",
+      "submit": "Nhận kết quả ước tính",
+      "privacyNote": "Thông tin của bạn được bảo mật và chỉ dùng để tư vấn lắp đặt điện mặt trời."
+    },
+    "errors": {
+      "invalidConsumption": "Vui lòng nhập số tiền điện hoặc số kWh hợp lệ.",
+      "invalidName": "Vui lòng nhập họ tên.",
+      "invalidPhone": "Số điện thoại không hợp lệ (VD: 0901234567).",
+      "generic": "Có lỗi xảy ra, vui lòng thử lại."
+    },
+    "result": {
+      "thankYou": "Cảm ơn {name}! Đây là kết quả ước tính dựa trên thông tin bạn cung cấp. Đội ngũ kỹ thuật sẽ liên hệ số {phone} trong vòng 24h để khảo sát và tư vấn chi tiết.",
+      "exceedsWarning": "Hệ thống của bạn cần công suất {kwp} kWp - vượt quá dải biến tần 1 pha hiện có (tối đa 10kW). Đây là quy mô cần thiết bị 3 pha / công suất lớn hơn, đội ngũ kỹ thuật sẽ khảo sát và tư vấn thiết bị phù hợp riêng cho bạn.",
+      "panelPower": "Công suất dàn pin",
+      "panelCount": "Số lượng tấm pin",
+      "panelCountUnit": "{count} tấm ({product})",
+      "inverter": "Biến tần",
+      "inverterContact": "Cần tư vấn riêng",
+      "battery": "Pin lưu trữ",
+      "batteryNone": "Không lắp",
+      "investment": "Chi phí đầu tư ước tính",
+      "monthlySavings": "Tiết kiệm mỗi tháng",
+      "payback": "Thời gian hoàn vốn",
+      "paybackUnit": "~{years} năm",
+      "co2": "Giảm phát thải CO2",
+      "co2Unit": "~{value} tấn/năm",
+      "breakdownTitle": "Chi tiết chi phí đầu tư",
+      "breakdownPanel": "Tấm pin ({count} tấm)",
+      "breakdownInverter": "Biến tần",
+      "breakdownBattery": "Pin lưu trữ",
+      "breakdownLabor": "Công lắp đặt",
+      "breakdownTotal": "Tổng cộng",
+      "disclaimer": "*Kết quả chỉ mang tính chất tham khảo, dựa trên thông số trung bình về bức xạ mặt trời và biểu giá điện hiện hành. Chi phí, công suất dàn pin, biến tần và pin lưu trữ thực tế có thể thay đổi sau khi đội ngũ kỹ thuật khảo sát trực tiếp diện tích mái, hướng nắng và nhu cầu sử dụng của bạn.",
+      "callCta": "Gọi ngay {hotline} để được khảo sát miễn phí"
+    }
+  },
+  "knowledge": {
+    "metaTitle": "Kiến thức hữu ích",
+    "metaDescription": "Tổng hợp kiến thức về điện năng lượng mặt trời áp mái: hướng dẫn vận hành, bảo trì, chính sách bảo hành và giải đáp các câu hỏi thường gặp.",
+    "hero": {
+      "eyebrow": "Kiến thức hữu ích",
+      "title": "Cẩm nang điện năng lượng mặt trời áp mái",
+      "description": "Những kiến thức thực tế giúp bạn hiểu rõ hơn về vận hành, bảo trì và quyền lợi bảo hành trước và sau khi lắp đặt hệ thống."
+    },
+    "articles": { "eyebrow": "Bài viết nổi bật", "title": "Kinh nghiệm sử dụng điện mặt trời hiệu quả" },
+    "warranty": {
+      "eyebrow": "Chính sách bảo hành",
+      "title": "Cam kết bảo hành rõ ràng cho từng hạng mục",
+      "table": {
+        "item": "Hạng mục",
+        "productWarranty": "Bảo hành sản phẩm",
+        "performanceWarranty": "Bảo hành hiệu suất",
+        "rows": [
+          { "item": "Tấm pin năng lượng mặt trời", "product": "12 - 18 năm", "performance": "25 - 30 năm" },
+          { "item": "Biến tần (Inverter)", "product": "10 năm (có thể nâng cấp)", "performance": "-" },
+          { "item": "Pin lưu trữ (Battery)", "product": "10 năm", "performance": "≥ 6.000 chu kỳ sạc/xả" },
+          { "item": "Khung giá đỡ & phụ kiện", "product": "12 năm", "performance": "-" },
+          { "item": "Công lắp đặt (PNG ONE SOLAR)", "product": "5 năm", "performance": "-" }
+        ]
+      }
+    },
+    "faq": { "eyebrow": "Giải đáp thắc mắc", "title": "Câu hỏi thường gặp" }
+  },
+  "contact": {
+    "metaTitle": "Liên hệ",
+    "metaDescription": "Liên hệ PNG ONE SOLAR để được khảo sát và tư vấn miễn phí giải pháp điện năng lượng mặt trời áp mái.",
+    "hero": {
+      "eyebrow": "Liên hệ",
+      "title": "Sẵn sàng tư vấn giải pháp phù hợp với bạn",
+      "description": "Để lại thông tin qua form bên dưới hoặc liên hệ trực tiếp qua hotline / Zalo, đội ngũ PNG ONE SOLAR luôn sẵn sàng hỗ trợ."
+    },
+    "form": {
+      "name": "Họ và tên *",
+      "namePlaceholder": "Nguyễn Văn A",
+      "phone": "Số điện thoại *",
+      "phonePlaceholder": "0901 234 567",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "address": "Khu vực lắp đặt",
+      "addressPlaceholder": "Số nhà, đường, quận/huyện...",
+      "note": "Nội dung cần tư vấn",
+      "notePlaceholder": "Bạn muốn tư vấn về hệ thống cho nhà ở, nhà xưởng hay doanh nghiệp?",
+      "submitting": "Đang gửi...",
+      "submit": "Gửi yêu cầu tư vấn",
+      "successTitle": "Đã gửi thành công!",
+      "successMessage": "Cảm ơn bạn đã liên hệ với PNG ONE SOLAR. Đội ngũ tư vấn sẽ liên hệ với bạn trong vòng 24 giờ làm việc."
+    },
+    "info": {
+      "address": "Địa chỉ văn phòng",
+      "hotline": "Hotline",
+      "email": "Email",
+      "workingHours": "Giờ làm việc"
+    }
+  }
+}

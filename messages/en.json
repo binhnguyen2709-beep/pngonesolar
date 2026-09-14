@@ -1,0 +1,400 @@
+{
+  "brand": {
+    "slogan": "Own Your Power - Optimize Your Costs",
+    "defaultTitle": "Rooftop Solar Installation"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "projects": "Projects",
+    "calculator": "Cost Calculator",
+    "knowledge": "Resources",
+    "contact": "Contact",
+    "getQuote": "Get a Free Quote"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "products": "Products",
+    "contactInfo": "Contact Information",
+    "rights": "All rights reserved",
+    "taxCode": "Tax code",
+    "designedBy": "Designed & operated by the PNG ONE SOLAR team"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "viewDetail": "View details",
+    "callNow": "Call now",
+    "contactZalo": "Chat on Zalo"
+  },
+  "stats": {
+    "experience": "Years of experience",
+    "projects": "Projects delivered",
+    "mwp": "MWp installed",
+    "provinces": "Provinces served"
+  },
+  "ctaBanner": {
+    "title": "Ready to take control of power for your home or business?",
+    "description": "Leave your details or call our hotline - PNG ONE SOLAR's engineers will survey your site and provide free advice within 24 hours.",
+    "cta": "Get a Free Quote"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "All-in-one solar energy solution",
+      "titlePrefix": "Cut up to",
+      "titleHighlight": "80% off your power bill",
+      "titleSuffix": "with a rooftop system from",
+      "description": "Take control of your power supply and stop dreading the monthly bill. Survey, design, installation and warranty handled end-to-end by an experienced engineering team - on schedule, at the committed output.",
+      "ctaCalculate": "Calculate installation cost now",
+      "ctaProjects": "View completed projects",
+      "payback": "Payback in 4-6 years",
+      "warranty": "Warranty up to 30 years",
+      "todayOutput": "Today's power output",
+      "vsYesterday": "vs. yesterday"
+    },
+    "painPoints": {
+      "eyebrow": "The problem you're facing",
+      "title": "The familiar worries behind every month's power bill",
+      "description": "If you're facing any of the issues below, it's time to take control of the power supply for your home or business.",
+      "items": [
+        { "title": "Power bills spike every hot season", "description": "Residential electricity is billed on a tiered scale - the more you use, the more expensive each kWh gets. Run the AC all summer and your bill can jump 2-3x compared to a normal month." },
+        { "title": "Outages and voltage drops disrupt life and production", "description": "Sudden power loss spoils goods in cold storage and halts production lines, causing losses that could have been avoided." },
+        { "title": "Worried about unreliable installers", "description": "Sloppy installation causes roof leaks, unbranded equipment of unknown origin, and vague warranty promises - reasons many households and businesses hesitate to invest." },
+        { "title": "Metal roofs trap heat, making living spaces stifling", "description": "Roofs and warehouses absorb heavy heat during the day, making the space below hot and driving up cooling costs." }
+      ],
+      "bannerPrefix": "PNG ONE SOLAR helps you",
+      "bannerHighlight": "take control of your power supply",
+      "bannerSuffix": "turning your monthly electricity cost into a profitable investment."
+    },
+    "whySolar": {
+      "eyebrow": "Why invest now",
+      "title": "Rooftop solar - a profitable investment, not just a cost",
+      "description": "This isn't just a trend - it's a smart financial solution that lets you control your electricity costs for the long term.",
+      "items": [
+        { "title": "Significant savings on electricity", "description": "Cut up to 80-90% off your monthly power bill, with payback in just 4-6 years while the system runs for over 25 years." },
+        { "title": "A power supply you control, with peace of mind", "description": "Combined with battery storage, keep essential appliances running even during grid outages or rolling blackouts." },
+        { "title": "Increased property value", "description": "Homes and factories with solar systems are valued higher when sold or leased thanks to lower operating costs and a modern image." },
+        { "title": "Contributing to environmental protection", "description": "Use clean energy, reduce CO2 emissions, and meet the ESG standards increasingly valued by international partners and customers." }
+      ]
+    },
+    "scenarios": {
+      "eyebrow": "Fits every setting",
+      "title": "From homes to farms - there's a solution for every setting",
+      "description": "Whether you're a household, a small business, or a working farm, PNG ONE SOLAR has an installation plan that fits your roof size and budget.",
+      "items": {
+        "houses": "Family homes",
+        "cabins": "Standalone / garden homes",
+        "stores": "Retail shops",
+        "offices": "Offices",
+        "farms": "Farms / agriculture"
+      }
+    },
+    "productsPreview": {
+      "eyebrow": "Genuine equipment",
+      "title": "A complete, integrated solar equipment ecosystem",
+      "description": "Solar panels, inverters, battery storage and accessories - carefully selected, IEC-certified, built for long-term performance and durability.",
+      "viewAll": "View all products",
+      "viewDetail": "View details"
+    },
+    "calculatorPromo": {
+      "title": "Estimate your installation cost in under a minute",
+      "description": "Our smart calculator helps you find the right system size and expected investment cost, before our technicians survey your site and provide an exact quote.",
+      "bullets": [
+        "Enter your monthly power bill or kWh usage",
+        "Get an instant estimate of system size and investment cost",
+        "See your payback period and monthly savings"
+      ],
+      "cta": "Calculate cost now",
+      "recommendedPower": "Recommended capacity",
+      "monthlySavings": "Savings / month",
+      "payback": "Payback",
+      "exampleSavings": "~2.1 million VND",
+      "examplePayback": "~5.2 years",
+      "disclaimer": "*Illustrative figures - actual results depend on your specific needs."
+    },
+    "process": {
+      "eyebrow": "How we work",
+      "title": "Transparent every step - from survey to hand-over",
+      "steps": [
+        { "title": "Free survey & consultation", "description": "Engineers survey your roof, review your power bill and assess your real usage needs." },
+        { "title": "Design & detailed quote", "description": "We propose the optimal capacity, with transparent costs and expected payback period." },
+        { "title": "Contract signing", "description": "A clear contract covering timeline, equipment and warranty policy - no hidden costs." },
+        { "title": "Installation", "description": "Our technical team installs to safety standards, on the committed schedule." },
+        { "title": "Commissioning & grid connection", "description": "We test the system, handle grid-connection paperwork with the utility, and hand over full documentation." },
+        { "title": "Warranty & ongoing support", "description": "Monitor output via the app, with scheduled maintenance and technical support for the product's full lifetime." }
+      ]
+    },
+    "projectsPreview": {
+      "eyebrow": "Featured projects",
+      "title": "Over 1,250 systems delivered nationwide",
+      "description": "From households to large-scale factories, every project is carefully installed and delivered on commitment by PNG ONE SOLAR.",
+      "viewAll": "View all projects"
+    },
+    "testimonials": {
+      "eyebrow": "What our customers say",
+      "title": "Thousands of customers have trusted us"
+    },
+    "faqPreview": {
+      "eyebrow": "Got questions?",
+      "title": "Frequently Asked Questions",
+      "description": "The most common questions before deciding to install rooftop solar.",
+      "viewMore": "See more helpful resources"
+    }
+  },
+  "about": {
+    "metaTitle": "About Us",
+    "metaDescription": "Learn about PNG ONE SOLAR - a trusted rooftop solar installer with an experienced engineering team.",
+    "hero": {
+      "eyebrow": "About us",
+      "title": "PNG ONE SOLAR - Your trusted partner for the clean energy transition",
+      "description": "We believe every rooftop can become a small power plant of its own - helping customers control their costs and power supply for the long run."
+    },
+    "story": {
+      "eyebrow": "Our story",
+      "title": "From a small technical team to a leading EPC contractor",
+      "p1": "PNG ONE SOLAR was founded by a team of electrical engineers with years of experience in renewable energy. Starting from a desire to ease the electricity cost burden on Vietnamese households, we have continuously expanded our capabilities to serve large-scale industrial projects as well.",
+      "p2": "Today, PNG ONE SOLAR is proud to be the trusted partner of thousands of customers, thanks to a transparent process, a professional installation team, and clear, long-term warranty policies."
+    },
+    "values": {
+      "eyebrow": "Core values",
+      "title": "What sets PNG ONE SOLAR apart",
+      "items": [
+        { "title": "Transparency", "description": "Clear quotes with no hidden costs, and detailed line-item contracts." },
+        { "title": "Quality", "description": "Only equipment with international IEC certification and a clear origin." },
+        { "title": "Dedication", "description": "We stand by our customers from consultation through installation and warranty, for the system's entire lifetime." },
+        { "title": "Professionalism", "description": "A well-trained engineering team experienced with every type of roof." }
+      ]
+    },
+    "milestones": {
+      "eyebrow": "Our journey",
+      "title": "Milestones worth remembering",
+      "items": [
+        { "year": "2017", "event": "Founded; completed our first rooftop solar project in Ho Chi Minh City" },
+        { "year": "2019", "event": "Expanded into the Southeast and Southwest regions" },
+        { "year": "2021", "event": "Surpassed 500 residential and commercial projects delivered" },
+        { "year": "2023", "event": "Launched a 24/7 remote system monitoring center" },
+        { "year": "2025", "event": "Surpassed 1,250 projects, present in over 32 provinces" }
+      ]
+    },
+    "partners": {
+      "eyebrow": "Backed by industry leaders",
+      "title": "Partnered with the world's leading equipment manufacturers",
+      "description": "PNG ONE SOLAR directly imports and distributes equipment from globally trusted renewable energy manufacturers - these are not PNG ONE SOLAR's own facilities, but the factories that produce the inverters and batteries we supply.",
+      "austaName": "AUSTA - OSDA Group",
+      "austaDesc": "Inverter & battery storage manufacturing plant in China, up to 12GW of PV capacity, present in 150+ countries.",
+      "felicityName": "Felicity Solar",
+      "felicityDesc": "Guangzhou, China - 85,000m², 2,000+ staff",
+      "disclaimer": "*Images provided by our manufacturing partners in their official catalogues - not PNG ONE SOLAR's own headquarters or facilities."
+    }
+  },
+  "products": {
+    "metaTitle": "Products",
+    "metaDescription": "Genuine solar panels, inverters, battery storage and accessories, certified to international IEC standards.",
+    "hero": {
+      "eyebrow": "Products & equipment",
+      "title": "Integrated, genuine equipment - optimal performance, built to last",
+      "description": "PNG ONE SOLAR only selects equipment from manufacturers with international IEC 61215/61730 certification, ensuring committed performance for the system's entire lifetime.",
+      "priceNote": "*Listed prices include VAT and exclude installation labor. Prices may change over time - please contact us for an exact quote."
+    },
+    "categories": {
+      "panel": { "title": "Solar Panels", "description": "High-efficiency TOPCon / N-Type Bifacial panels, dual glass construction, built for tropical climates, with performance warranty up to 30 years." },
+      "inverter": { "title": "Inverters", "description": "Single-phase low-voltage hybrid inverters, battery-ready out of the box, with remote monitoring via mobile app." },
+      "battery": { "title": "Battery Storage", "description": "Safe, long-lasting LiFePO4 battery storage - store surplus power for use at night or during grid outages." },
+      "accessory": { "title": "Accessories & Mounting", "description": "Formed aluminum mounting frames, 304 stainless-steel hardware, and fire-rated DC cabling." }
+    },
+    "certs": {
+      "title": "Equipment certified to international standards by our manufacturers",
+      "disclaimer": "*Certifications apply to the equipment lines (inverters, batteries) from the manufacturer - not certifications held by PNG ONE SOLAR itself."
+    },
+    "perPanel": "/ panel"
+  },
+  "projects": {
+    "metaTitle": "Completed Projects",
+    "metaDescription": "Over 1,250 rooftop solar projects installed and delivered by PNG ONE SOLAR nationwide.",
+    "hero": {
+      "eyebrow": "Featured projects",
+      "title": "Over 1,250 systems delivered nationwide",
+      "description": "From households and factories to farms - every project is proof of PNG ONE SOLAR's build quality and long-term commitment."
+    },
+    "filterAll": "All",
+    "capacityLabel": "Capacity",
+    "categories": {
+      "household": "Household",
+      "factory": "Factory",
+      "business": "Business / Office",
+      "farm": "Farm / Agriculture"
+    }
+  },
+  "calculator": {
+    "metaTitle": "Solar Installation Cost Calculator",
+    "metaDescription": "Estimate your system size, investment cost and payback period for rooftop solar based on your monthly electricity usage.",
+    "hero": {
+      "eyebrow": "Calculator",
+      "title": "Estimate your rooftop solar installation cost",
+      "description": "It only takes a minute to find the right capacity and expected investment for your home or business. Detailed results appear right after you leave your contact details."
+    },
+    "steps": { "step1": "Power usage", "step2": "Contact details", "step3": "Estimated results" },
+    "customerType": {
+      "label": "You are a",
+      "hoGiaDinh": "Household",
+      "doanhNghiep": "Business / Office",
+      "nhaXuong": "Factory / Farm"
+    },
+    "tariff": {
+      "label": "Monthly electricity tariff",
+      "sinhHoat": "Residential",
+      "kinhDoanh": "Commercial",
+      "sanXuat": "Industrial",
+      "note": "*Average reference rate - the exact time-of-use rate will be confirmed during our site survey."
+    },
+    "phase": {
+      "label": "Power supply",
+      "onePhase": "Single-phase",
+      "threePhase": "Three-phase",
+      "note": "*For reference only - does not limit the recommended capacity."
+    },
+    "consumption": {
+      "label": "Monthly electricity usage",
+      "byBill": "By bill amount",
+      "byKwh": "By kWh",
+      "billPlaceholder": "e.g. 2,000,000",
+      "billUnit": "VND / month",
+      "kwhPlaceholder": "e.g. 700",
+      "kwhUnit": "kWh / month",
+      "equivKwh": "≈ {value} kWh/month (estimated)",
+      "equivBill": "≈ {value}/month"
+    },
+    "daytime": {
+      "label": "Share of usage between 6am and 6pm",
+      "day": "Daytime {value}%",
+      "night": "Evening {value}%",
+      "note": "Used to calculate the battery storage capacity needed for usage outside sunlight hours."
+    },
+    "roof": {
+      "label": "Roof type",
+      "ton": "Metal roof",
+      "bang": "Flat (concrete) roof",
+      "ngoi": "Tile roof",
+      "khac": "Other"
+    },
+    "province": { "label": "Province / city (optional)", "placeholder": "e.g. Ho Chi Minh City" },
+    "offset": {
+      "label": "Desired level of energy independence",
+      "note": "The share of your monthly power needs you'd like solar output to cover."
+    },
+    "battery": {
+      "label": "Battery storage",
+      "none": "None",
+      "useAuto": "Use auto-recommended",
+      "autoNote": "The system auto-recommends {product} (needs at least ~{kwh} kWh) based on your evening usage and desired independence above - you can change this if you'd like.",
+      "noneNeeded": "Based on your current usage, you don't need battery storage yet - you can still choose one if you'd like extra backup.",
+      "manualNote": "You've manually selected a battery, different from the auto-recommendation."
+    },
+    "submitStep1": "View estimated results",
+    "step2Intro": "Please leave your contact details to instantly get the estimated capacity, investment cost and payback period. Our team will reach out to survey your site and provide an exact quote.",
+    "form": {
+      "name": "Full name *",
+      "namePlaceholder": "John Smith",
+      "phone": "Phone number *",
+      "phonePlaceholder": "0901 234 567",
+      "email": "Email (optional)",
+      "emailPlaceholder": "email@example.com",
+      "address": "Installation area (optional)",
+      "addressPlaceholder": "Street address, district...",
+      "back": "Back",
+      "submitting": "Submitting...",
+      "submit": "Get my estimated results",
+      "privacyNote": "Your information is kept private and used only for solar installation consultation."
+    },
+    "errors": {
+      "invalidConsumption": "Please enter a valid bill amount or kWh figure.",
+      "invalidName": "Please enter your full name.",
+      "invalidPhone": "Invalid phone number (e.g. 0901234567).",
+      "generic": "Something went wrong, please try again."
+    },
+    "result": {
+      "thankYou": "Thank you, {name}! Here is your estimate based on the information you provided. Our technical team will contact {phone} within 24 hours to survey your site and provide detailed advice.",
+      "exceedsWarning": "Your system requires {kwp} kWp - beyond our current single-phase inverter range (max 10kW). This scale needs a three-phase / higher-capacity setup - our technical team will survey your site and recommend the right equipment for you.",
+      "panelPower": "Panel array capacity",
+      "panelCount": "Number of panels",
+      "panelCountUnit": "{count} panels ({product})",
+      "inverter": "Inverter",
+      "inverterContact": "Requires custom consultation",
+      "battery": "Battery storage",
+      "batteryNone": "None",
+      "investment": "Estimated investment cost",
+      "monthlySavings": "Monthly savings",
+      "payback": "Payback period",
+      "paybackUnit": "~{years} years",
+      "co2": "CO2 emissions avoided",
+      "co2Unit": "~{value} tons/year",
+      "breakdownTitle": "Investment cost breakdown",
+      "breakdownPanel": "Solar panels ({count} panels)",
+      "breakdownInverter": "Inverter",
+      "breakdownBattery": "Battery storage",
+      "breakdownLabor": "Installation",
+      "breakdownTotal": "Total",
+      "disclaimer": "*Results are for reference only, based on average solar irradiance and current electricity tariffs. Actual cost, panel capacity, inverter and battery selection may change after our technicians survey your roof area, orientation and usage needs on site.",
+      "callCta": "Call {hotline} now for a free site survey"
+    }
+  },
+  "knowledge": {
+    "metaTitle": "Helpful Resources",
+    "metaDescription": "A collection of rooftop solar resources: operation guides, maintenance tips, warranty policy and frequently asked questions.",
+    "hero": {
+      "eyebrow": "Helpful resources",
+      "title": "Your rooftop solar handbook",
+      "description": "Practical knowledge to help you better understand operation, maintenance and warranty coverage before and after installing your system."
+    },
+    "articles": { "eyebrow": "Featured articles", "title": "Tips for getting the most out of your solar system" },
+    "warranty": {
+      "eyebrow": "Warranty policy",
+      "title": "Clear warranty commitments for every component",
+      "table": {
+        "item": "Component",
+        "productWarranty": "Product warranty",
+        "performanceWarranty": "Performance warranty",
+        "rows": [
+          { "item": "Solar panels", "product": "12 - 18 years", "performance": "25 - 30 years" },
+          { "item": "Inverter", "product": "10 years (upgradable)", "performance": "-" },
+          { "item": "Battery storage", "product": "10 years", "performance": "≥ 6,000 charge/discharge cycles" },
+          { "item": "Mounting frame & accessories", "product": "12 years", "performance": "-" },
+          { "item": "Installation (PNG ONE SOLAR)", "product": "5 years", "performance": "-" }
+        ]
+      }
+    },
+    "faq": { "eyebrow": "FAQ", "title": "Frequently Asked Questions" }
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Contact PNG ONE SOLAR for a free rooftop solar site survey and consultation.",
+    "hero": {
+      "eyebrow": "Contact us",
+      "title": "Ready to advise on the right solution for you",
+      "description": "Leave your details via the form below or reach us directly by hotline / Zalo - the PNG ONE SOLAR team is always ready to help."
+    },
+    "form": {
+      "name": "Full name *",
+      "namePlaceholder": "John Smith",
+      "phone": "Phone number *",
+      "phonePlaceholder": "0901 234 567",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "address": "Installation area",
+      "addressPlaceholder": "Street address, district...",
+      "note": "What would you like advice on?",
+      "notePlaceholder": "Are you looking for a system for a home, a factory, or a business?",
+      "submitting": "Submitting...",
+      "submit": "Send request",
+      "successTitle": "Sent successfully!",
+      "successMessage": "Thank you for contacting PNG ONE SOLAR. Our team will reach out within 24 business hours."
+    },
+    "info": {
+      "address": "Office address",
+      "hotline": "Hotline",
+      "email": "Email",
+      "workingHours": "Working hours"
+    }
+  }
+}

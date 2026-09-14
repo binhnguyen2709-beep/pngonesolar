@@ -1,0 +1,400 @@
+{
+  "brand": {
+    "slogan": "掌控电力 - 优化成本",
+    "defaultTitle": "屋顶太阳能安装工程"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "products": "产品",
+    "projects": "项目案例",
+    "calculator": "费用计算",
+    "knowledge": "知识专栏",
+    "contact": "联系我们",
+    "getQuote": "免费获取报价"
+  },
+  "footer": {
+    "quickLinks": "快速链接",
+    "products": "产品",
+    "contactInfo": "联系信息",
+    "rights": "版权所有",
+    "taxCode": "税号",
+    "designedBy": "由 PNG ONE SOLAR 团队设计与运营"
+  },
+  "common": {
+    "learnMore": "了解更多",
+    "viewAll": "查看全部",
+    "viewDetail": "查看详情",
+    "callNow": "立即致电",
+    "contactZalo": "Zalo 在线咨询"
+  },
+  "stats": {
+    "experience": "年经验",
+    "projects": "已交付项目",
+    "mwp": "已安装兆瓦",
+    "provinces": "服务省市"
+  },
+  "ctaBanner": {
+    "title": "准备好为您的家庭或企业掌控用电了吗？",
+    "description": "留下您的联系方式或直接致电热线，PNG ONE SOLAR 的技术团队将在24小时内为您勘察现场并提供免费咨询。",
+    "cta": "免费获取报价"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "一站式太阳能解决方案",
+      "titlePrefix": "最高可省",
+      "titleHighlight": "80% 电费",
+      "titleSuffix": "选择",
+      "description": "掌控自己的用电，不再为每月账单担忧。从勘察、设计、施工到质保，全程由经验丰富的工程团队负责 - 承诺按时交付、按约定功率发电。",
+      "ctaCalculate": "立即计算安装费用",
+      "ctaProjects": "查看已完成项目",
+      "payback": "4-6年回本",
+      "warranty": "保修长达30年",
+      "todayOutput": "今日发电量",
+      "vsYesterday": "较昨日"
+    },
+    "painPoints": {
+      "eyebrow": "您正面临的问题",
+      "title": "每月电费单背后那些熟悉的烦恼",
+      "description": "如果您正遇到以下任何一个问题，是时候为您的家庭或企业掌控用电了。",
+      "items": [
+        { "title": "炎热季节电费暴涨", "description": "生活用电按阶梯计费 - 用得越多，每度电越贵。夏季整天开空调，电费可能比平时高出2-3倍。" },
+        { "title": "停电、电压不稳影响生活与生产", "description": "突然停电会导致冷库货物损坏、生产线停摆，造成不必要的经济损失。" },
+        { "title": "担心施工方不专业", "description": "施工粗糙导致屋顶漏水、设备来源不明、质保承诺含糊，让许多家庭和企业不敢投资。" },
+        { "title": "铁皮屋顶吸热，室内闷热", "description": "屋顶、厂房白天吸收大量热量，导致室内闷热，增加降温成本。" }
+      ],
+      "bannerPrefix": "PNG ONE SOLAR 帮助您",
+      "bannerHighlight": "掌控自己的用电",
+      "bannerSuffix": "将每月电费支出转变为有回报的投资。"
+    },
+    "whySolar": {
+      "eyebrow": "为何现在就该投资",
+      "title": "屋顶太阳能 - 一项有回报的投资，而非单纯的支出",
+      "description": "这不仅是一种趋势，更是帮助您长期掌控电费成本的明智财务方案。",
+      "items": [
+        { "title": "显著节省电费", "description": "每月电费最高可减少80-90%，仅需4-6年即可回本，而系统可运行超过25年。" },
+        { "title": "掌控电源，安心运营", "description": "结合储能电池，即使电网故障或轮流停电，也能维持关键设备用电。" },
+        { "title": "提升房产价值", "description": "配备太阳能系统的房屋、厂房因运营成本低、形象现代，在买卖或出租时估值更高。" },
+        { "title": "为环境保护贡献力量", "description": "使用清洁能源，减少碳排放，同时满足国际合作伙伴与客户日益重视的ESG标准。" }
+      ]
+    },
+    "scenarios": {
+      "eyebrow": "适用于各种场景",
+      "title": "从住宅到农场 - 总有适合的方案",
+      "description": "无论是家庭住宅、小型商铺还是生产型农场，PNG ONE SOLAR 都能根据您的屋顶面积和预算提供合适的安装方案。",
+      "items": {
+        "houses": "家庭住宅",
+        "cabins": "独栋 / 庭院住宅",
+        "stores": "商铺",
+        "offices": "办公室",
+        "farms": "农场 / 农业"
+      }
+    },
+    "productsPreview": {
+      "eyebrow": "正品设备",
+      "title": "完整的太阳能设备生态系统",
+      "description": "太阳能板、逆变器、储能电池及配件均经过精心挑选，符合IEC国际标准，确保长期性能与耐用性。",
+      "viewAll": "查看全部产品",
+      "viewDetail": "查看详情"
+    },
+    "calculatorPromo": {
+      "title": "一分钟内估算安装费用",
+      "description": "智能计算工具帮助您了解合适的系统功率与预计投资成本，随后由技术团队实地勘察并提供准确报价。",
+      "bullets": [
+        "输入每月电费或用电量（kWh）",
+        "立即获得系统功率与预计投资成本",
+        "查看回本周期与每月节省金额"
+      ],
+      "cta": "立即计算费用",
+      "recommendedPower": "建议功率",
+      "monthlySavings": "每月节省",
+      "payback": "回本周期",
+      "exampleSavings": "约210万越南盾",
+      "examplePayback": "约5.2年",
+      "disclaimer": "*仅为示意数据，实际结果因您的需求而异"
+    },
+    "process": {
+      "eyebrow": "工作流程",
+      "title": "从勘察到交付，每一步都透明公开",
+      "steps": [
+        { "title": "免费勘察与咨询", "description": "工程师勘察屋顶情况，分析电费账单及实际用电需求。" },
+        { "title": "设计与详细报价", "description": "提出最优功率方案，成本与预计回本周期公开透明。" },
+        { "title": "签订合同", "description": "合同明确工期、设备及质保政策 - 无隐藏费用。" },
+        { "title": "施工安装", "description": "技术团队按安全标准施工，确保按承诺工期完成。" },
+        { "title": "验收与并网", "description": "检测系统运行，协助办理电力公司并网手续，交付完整资料。" },
+        { "title": "质保与运维支持", "description": "通过App监控发电量，定期维护，并在产品整个生命周期内提供技术支持。" }
+      ]
+    },
+    "projectsPreview": {
+      "eyebrow": "代表性项目",
+      "title": "全国已交付超过1,250个项目",
+      "description": "从家庭住宅到大型厂房，PNG ONE SOLAR 都用心施工，并按承诺按时交付每一个项目。",
+      "viewAll": "查看全部项目"
+    },
+    "testimonials": {
+      "eyebrow": "客户怎么说",
+      "title": "数千名客户的信任之选"
+    },
+    "faqPreview": {
+      "eyebrow": "常见疑问解答",
+      "title": "常见问题",
+      "description": "在决定安装屋顶太阳能之前，最常见的一些疑问。",
+      "viewMore": "查看更多实用知识"
+    }
+  },
+  "about": {
+    "metaTitle": "关于我们",
+    "metaDescription": "了解 PNG ONE SOLAR - 值得信赖的屋顶太阳能安装商，拥有经验丰富的工程团队。",
+    "hero": {
+      "eyebrow": "关于我们",
+      "title": "PNG ONE SOLAR - 您清洁能源转型之旅的可靠伙伴",
+      "description": "我们相信，每一个屋顶都能成为一座小型发电站 - 帮助客户长期掌控成本与电力来源。"
+    },
+    "story": {
+      "eyebrow": "我们的故事",
+      "title": "从小型技术团队成长为领先的EPC总承包商",
+      "p1": "PNG ONE SOLAR 由多年深耕可再生能源领域的电气工程师团队创立。出于减轻越南家庭生活电费负担的初衷，我们不断扩大施工能力，如今也服务于大型工业项目。",
+      "p2": "如今，凭借透明的工作流程、专业的施工团队以及清晰、长期的质保政策，PNG ONE SOLAR 自豪地成为数千名客户信赖的合作伙伴。"
+    },
+    "values": {
+      "eyebrow": "核心价值",
+      "title": "PNG ONE SOLAR 的与众不同之处",
+      "items": [
+        { "title": "透明", "description": "报价清晰，无隐藏费用，合同逐项明确。" },
+        { "title": "品质", "description": "只使用通过国际IEC认证、来源清晰的设备。" },
+        { "title": "用心", "description": "从咨询、施工到质保，全程陪伴客户，贯穿系统整个生命周期。" },
+        { "title": "专业", "description": "工程团队训练有素，在各类屋顶施工方面经验丰富。" }
+      ]
+    },
+    "milestones": {
+      "eyebrow": "发展历程",
+      "title": "值得铭记的里程碑",
+      "items": [
+        { "year": "2017", "event": "公司成立，在胡志明市完成首个屋顶太阳能项目" },
+        { "year": "2019", "event": "将业务拓展至东南部及西南部地区" },
+        { "year": "2021", "event": "交付家庭与企业项目突破500个" },
+        { "year": "2023", "event": "推出24/7远程系统运行监控中心" },
+        { "year": "2025", "event": "项目数量突破1,250个，业务覆盖超过32个省市" }
+      ]
+    },
+    "partners": {
+      "eyebrow": "坚实的后盾",
+      "title": "全球领先的设备生产合作伙伴",
+      "description": "PNG ONE SOLAR 直接进口并分销来自全球知名可再生能源制造商的设备 - 以下并非 PNG ONE SOLAR 自有场地，而是我们所供应逆变器与储能电池的生产工厂。",
+      "austaName": "AUSTA - OSDA 集团",
+      "austaDesc": "位于中国的逆变器与储能电池生产基地，光伏产能高达12GW，业务遍及150多个国家。",
+      "felicityName": "Felicity Solar",
+      "felicityDesc": "中国广州 - 占地85,000平方米，员工2,000余人",
+      "disclaimer": "*图片由生产合作伙伴在其官方产品目录中提供，并非 PNG ONE SOLAR 自有总部或厂房。"
+    }
+  },
+  "products": {
+    "metaTitle": "产品",
+    "metaDescription": "正品太阳能板、逆变器、储能电池及配件，符合IEC国际认证标准。",
+    "hero": {
+      "eyebrow": "产品与设备",
+      "title": "同步配套、正品设备 - 性能优异，经久耐用",
+      "description": "PNG ONE SOLAR 只选用通过IEC 61215/61730国际认证的制造商设备，确保系统整个生命周期内的性能承诺。",
+      "priceNote": "*标价已含增值税，不含安装人工费。价格可能随时调整，请联系我们获取准确报价。"
+    },
+    "categories": {
+      "panel": { "title": "太阳能板", "description": "高效TOPCon / N型双面发电技术太阳能板，双玻璃结构，适应热带气候，性能质保长达30年。" },
+      "inverter": { "title": "逆变器", "description": "单相低压混合逆变器，出厂即可对接储能电池，支持手机App远程监控。" },
+      "battery": { "title": "储能电池", "description": "安全、长寿命的LiFePO4磷酸铁锂储能电池，储存多余电力供夜间或停电时使用。" },
+      "accessory": { "title": "配件与支架系统", "description": "定型铝合金支架、304不锈钢五金件，以及防火级直流电缆。" }
+    },
+    "certs": {
+      "title": "设备通过制造商的国际认证",
+      "disclaimer": "*该认证适用于制造商的设备系列（逆变器、储能电池），并非 PNG ONE SOLAR 自身的认证。"
+    },
+    "perPanel": "/ 块"
+  },
+  "projects": {
+    "metaTitle": "已完成项目",
+    "metaDescription": "PNG ONE SOLAR 已在全国范围内施工并交付超过1,250个屋顶太阳能项目。",
+    "hero": {
+      "eyebrow": "代表性项目",
+      "title": "全国已交付超过1,250个项目",
+      "description": "从家庭住宅、厂房到农场 - 每一个项目都是 PNG ONE SOLAR 施工品质与长期承诺的见证。"
+    },
+    "filterAll": "全部",
+    "capacityLabel": "系统功率",
+    "categories": {
+      "household": "家庭住宅",
+      "factory": "厂房",
+      "business": "企业 / 办公室",
+      "farm": "农场 / 农业"
+    }
+  },
+  "calculator": {
+    "metaTitle": "太阳能安装费用计算器",
+    "metaDescription": "根据您每月的用电量，估算屋顶太阳能系统的功率、投资成本与回本周期。",
+    "hero": {
+      "eyebrow": "计算工具",
+      "title": "估算屋顶太阳能安装费用",
+      "description": "只需1分钟，即可了解适合您家庭或企业的系统功率与预计投资成本。留下联系方式后即可立即查看详细结果。"
+    },
+    "steps": { "step1": "用电信息", "step2": "联系信息", "step3": "预估结果" },
+    "customerType": {
+      "label": "您是",
+      "hoGiaDinh": "家庭住宅",
+      "doanhNghiep": "企业 / 办公室",
+      "nhaXuong": "厂房 / 农场"
+    },
+    "tariff": {
+      "label": "每月电价类型",
+      "sinhHoat": "生活用电",
+      "kinhDoanh": "商业用电",
+      "sanXuat": "生产用电",
+      "note": "*为平均参考价，实际按时段计价的价格将在现场勘察时为您准确核算。"
+    },
+    "phase": {
+      "label": "用电类型",
+      "onePhase": "单相",
+      "threePhase": "三相",
+      "note": "*仅供参考，不限制建议功率。"
+    },
+    "consumption": {
+      "label": "每月用电量",
+      "byBill": "按电费金额",
+      "byKwh": "按用电量(kWh)",
+      "billPlaceholder": "例如：2,000,000",
+      "billUnit": "越南盾 / 月",
+      "kwhPlaceholder": "例如：700",
+      "kwhUnit": "kWh / 月",
+      "equivKwh": "约合 ~{value} kWh/月（估算）",
+      "equivBill": "约合 ~{value}/月"
+    },
+    "daytime": {
+      "label": "早6点至晚6点用电占比",
+      "day": "白天 {value}%",
+      "night": "夜间 {value}%",
+      "note": "用于计算非日照时段用电所需的储能电池容量。"
+    },
+    "roof": {
+      "label": "屋顶类型",
+      "ton": "铁皮屋顶",
+      "bang": "平屋顶（混凝土）",
+      "ngoi": "瓦屋顶",
+      "khac": "其他"
+    },
+    "province": { "label": "省/市（可选）", "placeholder": "例如：胡志明市" },
+    "offset": {
+      "label": "期望的用电自给率",
+      "note": "预计太阳能发电量满足您每月用电需求的比例。"
+    },
+    "battery": {
+      "label": "储能电池",
+      "none": "不安装",
+      "useAuto": "使用自动推荐",
+      "autoNote": "系统根据您以上选择的夜间用电量与自给率，自动推荐 {product}（至少需要约 {kwh} kWh）- 如有需要您也可以自行调整。",
+      "noneNeeded": "根据您当前的用电情况，暂不需要安装储能电池 - 如需额外备用电力，您也可以自行选择。",
+      "manualNote": "您已手动选择储能电池，与自动推荐不同。"
+    },
+    "submitStep1": "查看预估结果",
+    "step2Intro": "请留下您的联系方式，即可立即获得功率、投资成本与回本周期的预估结果。我们的顾问团队将联系您进行现场勘察并提供准确报价。",
+    "form": {
+      "name": "姓名 *",
+      "namePlaceholder": "阮文安",
+      "phone": "电话号码 *",
+      "phonePlaceholder": "0901 234 567",
+      "email": "电子邮箱（可选）",
+      "emailPlaceholder": "email@example.com",
+      "address": "安装地点（可选）",
+      "addressPlaceholder": "门牌号、街道、区/县……",
+      "back": "返回",
+      "submitting": "提交中...",
+      "submit": "获取预估结果",
+      "privacyNote": "您的信息将被保密，仅用于太阳能安装咨询。"
+    },
+    "errors": {
+      "invalidConsumption": "请输入有效的电费金额或用电量。",
+      "invalidName": "请输入姓名。",
+      "invalidPhone": "电话号码无效（例如：0901234567）。",
+      "generic": "出现错误，请重试。"
+    },
+    "result": {
+      "thankYou": "感谢您，{name}！以下是根据您提供的信息得出的预估结果。我们的技术团队将在24小时内联系 {phone}，为您进行现场勘察并提供详细咨询。",
+      "exceedsWarning": "您的系统所需功率为 {kwp} kWp - 已超出目前单相逆变器的范围（最大10kW）。此规模需要三相/更大功率的设备，我们的技术团队将为您勘察现场并推荐合适的专用设备。",
+      "panelPower": "太阳能板阵列功率",
+      "panelCount": "太阳能板数量",
+      "panelCountUnit": "{count} 块（{product}）",
+      "inverter": "逆变器",
+      "inverterContact": "需单独咨询",
+      "battery": "储能电池",
+      "batteryNone": "不安装",
+      "investment": "预估投资成本",
+      "monthlySavings": "每月节省",
+      "payback": "回本周期",
+      "paybackUnit": "约 {years} 年",
+      "co2": "减少碳排放",
+      "co2Unit": "约 {value} 吨/年",
+      "breakdownTitle": "投资成本明细",
+      "breakdownPanel": "太阳能板（{count}块）",
+      "breakdownInverter": "逆变器",
+      "breakdownBattery": "储能电池",
+      "breakdownLabor": "安装施工费",
+      "breakdownTotal": "总计",
+      "disclaimer": "*结果仅供参考，基于平均太阳辐照度和现行电价计算。实际费用、太阳能板功率、逆变器与储能电池配置可能会在技术团队实地勘察屋顶面积、朝向及您的用电需求后有所调整。",
+      "callCta": "立即致电 {hotline} 获取免费现场勘察"
+    }
+  },
+  "knowledge": {
+    "metaTitle": "实用知识",
+    "metaDescription": "屋顶太阳能相关知识汇总：运行维护指南、质保政策及常见问题解答。",
+    "hero": {
+      "eyebrow": "实用知识",
+      "title": "屋顶太阳能使用手册",
+      "description": "帮助您在安装系统前后更好地了解运行维护及质保权益的实用知识。"
+    },
+    "articles": { "eyebrow": "精选文章", "title": "高效使用太阳能系统的经验分享" },
+    "warranty": {
+      "eyebrow": "质保政策",
+      "title": "每个部件都有清晰的质保承诺",
+      "table": {
+        "item": "项目",
+        "productWarranty": "产品质保",
+        "performanceWarranty": "性能质保",
+        "rows": [
+          { "item": "太阳能板", "product": "12 - 18 年", "performance": "25 - 30 年" },
+          { "item": "逆变器", "product": "10 年（可升级）", "performance": "-" },
+          { "item": "储能电池", "product": "10 年", "performance": "≥ 6,000 次充放电循环" },
+          { "item": "支架及配件", "product": "12 年", "performance": "-" },
+          { "item": "安装施工（PNG ONE SOLAR）", "product": "5 年", "performance": "-" }
+        ]
+      }
+    },
+    "faq": { "eyebrow": "常见疑问解答", "title": "常见问题" }
+  },
+  "contact": {
+    "metaTitle": "联系我们",
+    "metaDescription": "联系 PNG ONE SOLAR，获取免费的屋顶太阳能现场勘察与咨询服务。",
+    "hero": {
+      "eyebrow": "联系我们",
+      "title": "随时为您提供合适的解决方案咨询",
+      "description": "通过下方表单留下您的信息，或直接拨打热线/Zalo联系我们，PNG ONE SOLAR 团队随时为您提供帮助。"
+    },
+    "form": {
+      "name": "姓名 *",
+      "namePlaceholder": "阮文安",
+      "phone": "电话号码 *",
+      "phonePlaceholder": "0901 234 567",
+      "email": "电子邮箱",
+      "emailPlaceholder": "email@example.com",
+      "address": "安装地点",
+      "addressPlaceholder": "门牌号、街道、区/县……",
+      "note": "咨询内容",
+      "notePlaceholder": "您想咨询住宅、厂房还是企业系统？",
+      "submitting": "提交中...",
+      "submit": "发送咨询请求",
+      "successTitle": "发送成功！",
+      "successMessage": "感谢您联系 PNG ONE SOLAR。我们的顾问团队将在24个工作小时内与您联系。"
+    },
+    "info": {
+      "address": "办公地址",
+      "hotline": "热线电话",
+      "email": "电子邮箱",
+      "workingHours": "工作时间"
+    }
+  }
+}

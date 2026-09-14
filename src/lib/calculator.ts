@@ -1,4 +1,5 @@
 import { products, type Product } from "@/data/products";
+import type { Locale } from "@/i18n/routing";
 
 export type TariffType = "sinh-hoat" | "kinh-doanh" | "san-xuat";
 
@@ -115,8 +116,13 @@ export interface CalculatorResult {
   exceedsCatalog: boolean;
 }
 
-// Sản lượng điện trung bình mỗi kWp tạo ra tại Việt Nam ~ 3.8 - 4.2 kWh/ngày tùy vùng miền.
-const AVG_DAILY_YIELD_PER_KWP = 3.9;
+// Số giờ nắng đỉnh (Peak Sun Hours) trung bình tại Việt Nam dao động 3.5-4.5 giờ/ngày tùy vùng
+// miền (Nam & Nam Trung Bộ cao hơn miền Bắc) - lấy mức trung bình toàn quốc để đơn giản hóa.
+const PEAK_SUN_HOURS = 4;
+// Hiệu suất thực tế của hệ thống (hao hụt do nhiệt độ, hiệu suất inverter, bụi bẩn...) ~80%.
+const SYSTEM_LOSS_FACTOR = 0.8;
+// Sản lượng điện mỗi kWp tạo ra mỗi ngày = giờ nắng đỉnh × hiệu suất hệ thống.
+const DAILY_YIELD_PER_KWP = PEAK_SUN_HOURS * SYSTEM_LOSS_FACTOR;
 const DAYS_PER_MONTH = 30;
 const ROOF_AREA_PER_KWP = 5.2; // m2 mái cần thiết cho mỗi kWp lắp đặt
 
@@ -208,9 +214,11 @@ export function calculateSolarSystem(input: CalculatorInput): CalculatorResult {
   const panelUnitPrice = Math.round(panelWattPeak * panel.pricePerWatt!);
 
   // 1. Công suất dàn pin: tính theo TỔNG mức tự chủ mong muốn (cả ngày lẫn tối), vì nắng ban ngày
-  // cần sản xuất đủ để vừa dùng trực tiếp ban ngày, vừa sạc pin dùng cho buổi tối.
-  const targetMonthlyOffsetKwh = (monthlyKwh * offsetPercent) / 100;
-  const rawKwp = targetMonthlyOffsetKwh / (AVG_DAILY_YIELD_PER_KWP * DAYS_PER_MONTH);
+  // cần sản xuất đủ để vừa dùng trực tiếp ban ngày, vừa sạc pin dùng cho buổi tối. Công thức theo
+  // giờ nắng đỉnh: kWp = (điện cần tự chủ/ngày ÷ hiệu suất hệ thống) ÷ số giờ nắng đỉnh.
+  const targetDailyKwh = ((monthlyKwh / DAYS_PER_MONTH) * offsetPercent) / 100;
+  const dailyEnergyNeededKwh = targetDailyKwh / SYSTEM_LOSS_FACTOR;
+  const rawKwp = dailyEnergyNeededKwh / PEAK_SUN_HOURS;
   const targetKwp = Math.max(3, rawKwp);
 
   // 2. Chốt số tấm pin trước, sau đó suy ngược công suất thực tế để mọi con số (chi phí, sản
@@ -218,7 +226,7 @@ export function calculateSolarSystem(input: CalculatorInput): CalculatorResult {
   const panelCount = Math.ceil((targetKwp * 1000) / panelWattPeak);
   const actualKwp = Math.round(((panelCount * panelWattPeak) / 1000) * 100) / 100;
 
-  const estimatedYearlyOutputKwh = Math.round(actualKwp * AVG_DAILY_YIELD_PER_KWP * 365);
+  const estimatedYearlyOutputKwh = Math.round(actualKwp * DAILY_YIELD_PER_KWP * 365);
   const monthlyOutputKwh = estimatedYearlyOutputKwh / 12;
   const offsetKwhActual = Math.min(monthlyOutputKwh, monthlyKwh);
   const avgPricePerKwh = monthlyKwh > 0 ? estimateBillFromKwh(monthlyKwh) / monthlyKwh : 2500;
@@ -270,16 +278,24 @@ export function calculateSolarSystem(input: CalculatorInput): CalculatorResult {
   };
 }
 
-export function formatVnd(value: number): string {
-  return new Intl.NumberFormat("vi-VN").format(Math.round(value)) + " đ";
+const numberFormatLocale: Record<Locale, string> = { vi: "vi-VN", en: "en-US", zh: "zh-CN" };
+const compactUnits: Record<Locale, { billion: string; million: string }> = {
+  vi: { billion: "tỷ", million: "triệu" },
+  en: { billion: "billion", million: "million" },
+  zh: { billion: "十亿", million: "百万" },
+};
+
+export function formatVnd(value: number, locale: Locale = "vi"): string {
+  return new Intl.NumberFormat(numberFormatLocale[locale]).format(Math.round(value)) + " đ";
 }
 
-export function formatVndCompact(value: number): string {
+export function formatVndCompact(value: number, locale: Locale = "vi"): string {
+  const units = compactUnits[locale];
   if (value >= 1_000_000_000) {
-    return `${(value / 1_000_000_000).toFixed(2).replace(/\.00$/, "")} tỷ`;
+    return `${(value / 1_000_000_000).toFixed(2).replace(/\.00$/, "")} ${units.billion}`;
   }
   if (value >= 1_000_000) {
-    return `${(value / 1_000_000).toFixed(0)} triệu`;
+    return `${(value / 1_000_000).toFixed(0)} ${units.million}`;
   }
-  return formatVnd(value);
+  return formatVnd(value, locale);
 }

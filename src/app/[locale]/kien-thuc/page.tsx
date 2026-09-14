@@ -1,44 +1,38 @@
 import type { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 import { BookOpen, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FaqAccordion } from "@/components/shared/FaqAccordion";
 import { CtaBanner } from "@/components/shared/CtaBanner";
-import { articles } from "@/data/articles";
-import { faqGroups } from "@/data/faqs";
+import { getLocalizedArticles } from "@/data/articles";
+import { getLocalizedFaqGroups } from "@/data/faqs";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Kiến thức hữu ích",
-  description:
-    "Tổng hợp kiến thức về điện năng lượng mặt trời áp mái: hướng dẫn vận hành, bảo trì, chính sách bảo hành và giải đáp các câu hỏi thường gặp.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("knowledge");
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
-const warrantyTable = [
-  { item: "Tấm pin năng lượng mặt trời", product: "12 - 18 năm", performance: "25 - 30 năm" },
-  { item: "Biến tần (Inverter)", product: "10 năm (có thể nâng cấp)", performance: "-" },
-  { item: "Pin lưu trữ (Battery)", product: "10 năm", performance: "≥ 6.000 chu kỳ sạc/xả" },
-  { item: "Khung giá đỡ & phụ kiện", product: "12 năm", performance: "-" },
-  { item: "Công lắp đặt (PNG ONE SOLAR)", product: "5 năm", performance: "-" },
-];
+export default async function KnowledgePage() {
+  const t = await getTranslations("knowledge");
+  const locale = (await getLocale()) as Locale;
+  const articles = getLocalizedArticles(locale);
+  const faqGroups = getLocalizedFaqGroups(locale);
+  const warrantyRows = t.raw("warranty.table.rows") as { item: string; product: string; performance: string }[];
 
-export default function KnowledgePage() {
   return (
     <>
       <section className="relative overflow-hidden bg-navy-950 py-20 sm:py-24">
         <div className="bg-grid absolute inset-0 opacity-30" />
         <Container className="relative">
-          <SectionHeading
-            eyebrow="Kiến thức hữu ích"
-            title="Cẩm nang điện năng lượng mặt trời áp mái"
-            description="Những kiến thức thực tế giúp bạn hiểu rõ hơn về vận hành, bảo trì và quyền lợi bảo hành trước và sau khi lắp đặt hệ thống."
-            light
-          />
+          <SectionHeading eyebrow={t("hero.eyebrow")} title={t("hero.title")} description={t("hero.description")} light />
         </Container>
       </section>
 
       <section className="py-20 sm:py-24">
         <Container>
-          <SectionHeading eyebrow="Bài viết nổi bật" title="Kinh nghiệm sử dụng điện mặt trời hiệu quả" />
+          <SectionHeading eyebrow={t("articles.eyebrow")} title={t("articles.title")} />
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {articles.map((a) => (
               <div key={a.slug} className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
@@ -58,18 +52,18 @@ export default function KnowledgePage() {
 
       <section className="bg-slate-50 py-20 sm:py-24">
         <Container>
-          <SectionHeading eyebrow="Chính sách bảo hành" title="Cam kết bảo hành rõ ràng cho từng hạng mục" />
+          <SectionHeading eyebrow={t("warranty.eyebrow")} title={t("warranty.title")} />
           <div className="mt-10 overflow-x-auto rounded-2xl border border-slate-100 bg-white">
             <table className="w-full min-w-[560px] text-left text-sm">
               <thead>
                 <tr className="border-b border-slate-100 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  <th className="px-6 py-4">Hạng mục</th>
-                  <th className="px-6 py-4">Bảo hành sản phẩm</th>
-                  <th className="px-6 py-4">Bảo hành hiệu suất</th>
+                  <th className="px-6 py-4">{t("warranty.table.item")}</th>
+                  <th className="px-6 py-4">{t("warranty.table.productWarranty")}</th>
+                  <th className="px-6 py-4">{t("warranty.table.performanceWarranty")}</th>
                 </tr>
               </thead>
               <tbody>
-                {warrantyTable.map((row) => (
+                {warrantyRows.map((row) => (
                   <tr key={row.item} className="border-b border-slate-50 last:border-0">
                     <td className="px-6 py-4 font-semibold text-navy-950">{row.item}</td>
                     <td className="px-6 py-4 text-slate-600">{row.product}</td>
@@ -84,7 +78,7 @@ export default function KnowledgePage() {
 
       <section className="py-20 sm:py-24">
         <Container>
-          <SectionHeading eyebrow="Giải đáp thắc mắc" title="Câu hỏi thường gặp" align="center" />
+          <SectionHeading eyebrow={t("faq.eyebrow")} title={t("faq.title")} align="center" />
           <div className="mx-auto mt-10 max-w-3xl space-y-10">
             {faqGroups.map((group) => (
               <div key={group.group}>

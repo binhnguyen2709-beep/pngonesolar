@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 
 export function ContactForm() {
+  const t = useTranslations("contact.form");
+  const tErr = useTranslations("calculator.errors");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -18,11 +21,11 @@ export function ContactForm() {
     setError(null);
 
     if (name.trim().length < 2) {
-      setError("Vui lòng nhập họ tên.");
+      setError(tErr("invalidName"));
       return;
     }
     if (!/^(0|\+84)[0-9]{9,10}$/.test(phone.trim())) {
-      setError("Số điện thoại không hợp lệ (VD: 0901234567).");
+      setError(tErr("invalidPhone"));
       return;
     }
 
@@ -41,10 +44,10 @@ export function ContactForm() {
         }),
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error || "Có lỗi xảy ra, vui lòng thử lại.");
+      if (!res.ok || !data.ok) throw new Error(data.error || tErr("generic"));
       setSuccess(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Có lỗi xảy ra, vui lòng thử lại.");
+      setError(err instanceof Error ? err.message : tErr("generic"));
     } finally {
       setSubmitting(false);
     }
@@ -56,10 +59,8 @@ export function ContactForm() {
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
           <CheckCircle2 className="h-7 w-7" />
         </div>
-        <h3 className="mt-4 text-xl font-bold text-navy-950">Đã gửi thành công!</h3>
-        <p className="mt-2 max-w-sm text-sm text-slate-600">
-          Cảm ơn bạn đã liên hệ với PNG ONE SOLAR. Đội ngũ tư vấn sẽ liên hệ với bạn trong vòng 24 giờ làm việc.
-        </p>
+        <h3 className="mt-4 text-xl font-bold text-navy-950">{t("successTitle")}</h3>
+        <p className="mt-2 max-w-sm text-sm text-slate-600">{t("successMessage")}</p>
       </div>
     );
   }
@@ -71,55 +72,55 @@ export function ContactForm() {
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <label className="text-sm font-semibold text-navy-950">Họ và tên *</label>
+          <label className="text-sm font-semibold text-navy-950">{t("name")}</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-            placeholder="Nguyễn Văn A"
+            placeholder={t("namePlaceholder")}
           />
         </div>
         <div>
-          <label className="text-sm font-semibold text-navy-950">Số điện thoại *</label>
+          <label className="text-sm font-semibold text-navy-950">{t("phone")}</label>
           <input
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-            placeholder="0901 234 567"
+            placeholder={t("phonePlaceholder")}
           />
         </div>
         <div>
-          <label className="text-sm font-semibold text-navy-950">Email</label>
+          <label className="text-sm font-semibold text-navy-950">{t("email")}</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-            placeholder="email@example.com"
+            placeholder={t("emailPlaceholder")}
           />
         </div>
         <div>
-          <label className="text-sm font-semibold text-navy-950">Khu vực lắp đặt</label>
+          <label className="text-sm font-semibold text-navy-950">{t("address")}</label>
           <input
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-            placeholder="Số nhà, đường, quận/huyện..."
+            placeholder={t("addressPlaceholder")}
           />
         </div>
       </div>
 
       <div>
-        <label className="text-sm font-semibold text-navy-950">Nội dung cần tư vấn</label>
+        <label className="text-sm font-semibold text-navy-950">{t("note")}</label>
         <textarea
           value={note}
           onChange={(e) => setNote(e.target.value)}
           rows={4}
           className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-          placeholder="Bạn muốn tư vấn về hệ thống cho nhà ở, nhà xưởng hay doanh nghiệp?"
+          placeholder={t("notePlaceholder")}
         />
       </div>
 
@@ -132,11 +133,11 @@ export function ContactForm() {
       >
         {submitting ? (
           <>
-            <Loader2 className="h-5 w-5 animate-spin" /> Đang gửi...
+            <Loader2 className="h-5 w-5 animate-spin" /> {t("submitting")}
           </>
         ) : (
           <>
-            <Send className="h-5 w-5" /> Gửi yêu cầu tư vấn
+            <Send className="h-5 w-5" /> {t("submit")}
           </>
         )}
       </button>

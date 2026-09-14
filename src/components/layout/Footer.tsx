@@ -1,8 +1,9 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/ui/Logo";
-import { navLinks, siteConfig } from "@/lib/site-config";
-import { productCategories } from "@/data/products";
+import { siteConfig } from "@/lib/site-config";
+import type { ProductCategory } from "@/data/products";
 
 function FacebookIcon() {
   return (
@@ -20,7 +21,23 @@ function YoutubeIcon() {
   );
 }
 
+const categoryKeys: ProductCategory[] = ["panel", "inverter", "battery", "accessory"];
+
 export function Footer() {
+  const t = useTranslations("nav");
+  const tFooter = useTranslations("footer");
+  const tCat = useTranslations("products.categories");
+
+  const navLinks = [
+    { href: "/", label: t("home") },
+    { href: "/gioi-thieu", label: t("about") },
+    { href: "/san-pham", label: t("products") },
+    { href: "/du-an", label: t("projects") },
+    { href: "/tinh-chi-phi", label: t("calculator") },
+    { href: "/kien-thuc", label: t("knowledge") },
+    { href: "/lien-he", label: t("contact") },
+  ];
+
   return (
     <footer className="bg-navy-950 text-slate-300">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -51,7 +68,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Liên kết nhanh</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">{tFooter("quickLinks")}</h3>
             <ul className="mt-4 space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -64,12 +81,12 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Sản phẩm</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">{tFooter("products")}</h3>
             <ul className="mt-4 space-y-3">
-              {productCategories.map((c) => (
-                <li key={c.key}>
-                  <Link href={`/san-pham#${c.key}`} className="text-sm text-slate-400 transition-colors hover:text-white">
-                    {c.title}
+              {categoryKeys.map((key) => (
+                <li key={key}>
+                  <Link href={`/san-pham#${key}`} className="text-sm text-slate-400 transition-colors hover:text-white">
+                    {tCat(`${key}.title`)}
                   </Link>
                 </li>
               ))}
@@ -77,7 +94,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Thông tin liên hệ</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">{tFooter("contactInfo")}</h3>
             <ul className="mt-4 space-y-3 text-sm text-slate-400">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 flex-none text-brand-400" />
@@ -102,9 +119,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {siteConfig.fullName}. Mã số thuế: {siteConfig.taxCode}.
+            © {new Date().getFullYear()} {siteConfig.fullName}. {tFooter("taxCode")}: {siteConfig.taxCode}.
           </p>
-          <p>Thiết kế &amp; vận hành bởi đội ngũ PNG ONE SOLAR</p>
+          <p>{tFooter("designedBy")}</p>
         </div>
       </div>
     </footer>

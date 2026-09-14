@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, type FormEvent } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import {
   Battery,
   BatteryCharging,
@@ -32,38 +33,29 @@ import {
   type RoofType,
   type TariffType,
 } from "@/lib/calculator";
+import { getLocalizedProduct } from "@/data/products";
 import { siteConfig } from "@/lib/site-config";
+import type { Locale } from "@/i18n/routing";
 
 const batteryOptions = getBatteryOptions();
 
 type InputMode = "bill" | "kwh";
 type Step = 1 | 2 | 3;
 
-const customerTypes: { key: CustomerType; label: string; icon: typeof Home }[] = [
-  { key: "ho-gia-dinh", label: "Hộ gia đình", icon: Home },
-  { key: "doanh-nghiep", label: "Doanh nghiệp / Văn phòng", icon: Building2 },
-  { key: "nha-xuong", label: "Nhà xưởng / Trang trại", icon: Tractor },
-];
-
-const roofTypes: { key: RoofType; label: string }[] = [
-  { key: "ton", label: "Mái tôn" },
-  { key: "bang", label: "Mái bằng (bê tông)" },
-  { key: "ngoi", label: "Mái ngói" },
-  { key: "khac", label: "Khác" },
-];
-
-const tariffTypes: { key: TariffType; label: string }[] = [
-  { key: "sinh-hoat", label: "Điện sinh hoạt" },
-  { key: "kinh-doanh", label: "Điện kinh doanh" },
-  { key: "san-xuat", label: "Điện sản xuất" },
-];
-
-const phaseTypes: { key: PhaseType; label: string }[] = [
-  { key: "1-pha", label: "1 pha" },
-  { key: "3-pha", label: "3 pha" },
-];
+const customerTypeIcons: Record<CustomerType, typeof Home> = {
+  "ho-gia-dinh": Home,
+  "doanh-nghiep": Building2,
+  "nha-xuong": Tractor,
+};
+const customerTypeKeys: CustomerType[] = ["ho-gia-dinh", "doanh-nghiep", "nha-xuong"];
+const roofTypeKeys: RoofType[] = ["ton", "bang", "ngoi", "khac"];
+const tariffTypeKeys: TariffType[] = ["sinh-hoat", "kinh-doanh", "san-xuat"];
+const phaseTypeKeys: PhaseType[] = ["1-pha", "3-pha"];
 
 export function CalculatorForm() {
+  const t = useTranslations("calculator");
+  const locale = useLocale() as Locale;
+
   const [step, setStep] = useState<Step>(1);
   const [mode, setMode] = useState<InputMode>("bill");
   const [billVnd, setBillVnd] = useState<string>("2000000");
@@ -119,7 +111,7 @@ export function CalculatorForm() {
   function handleStep1Submit(e: FormEvent) {
     e.preventDefault();
     if (monthlyKwh <= 0) {
-      setFormError("Vui lòng nhập số tiền điện hoặc số kWh hợp lệ.");
+      setFormError(t("errors.invalidConsumption"));
       return;
     }
     setFormError(null);
@@ -131,11 +123,11 @@ export function CalculatorForm() {
     setFormError(null);
 
     if (name.trim().length < 2) {
-      setFormError("Vui lòng nhập họ tên.");
+      setFormError(t("errors.invalidName"));
       return;
     }
     if (!/^(0|\+84)[0-9]{9,10}$/.test(phone.trim())) {
-      setFormError("Số điện thoại không hợp lệ (VD: 0901234567).");
+      setFormError(t("errors.invalidPhone"));
       return;
     }
 
@@ -169,15 +161,20 @@ export function CalculatorForm() {
 
       const data = await res.json();
       if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Có lỗi xảy ra, vui lòng thử lại.");
+        throw new Error(data.error || t("errors.generic"));
       }
       setStep(3);
     } catch (err) {
-      setFormError(err instanceof Error ? err.message : "Có lỗi xảy ra, vui lòng thử lại.");
+      setFormError(err instanceof Error ? err.message : t("errors.generic"));
     } finally {
       setSubmitting(false);
     }
   }
+
+  const localizedPanel = result ? getLocalizedProduct(result.panelProduct, locale) : null;
+  const localizedInverter = result?.inverterProduct ? getLocalizedProduct(result.inverterProduct, locale) : null;
+  const localizedBattery = result?.batteryProduct ? getLocalizedProduct(result.batteryProduct, locale) : null;
+  const localizedSelectedBattery = selectedBatteryProduct ? getLocalizedProduct(selectedBatteryProduct, locale) : null;
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -187,66 +184,69 @@ export function CalculatorForm() {
         {step === 1 && (
           <form onSubmit={handleStep1Submit} className="space-y-8">
             <div>
-              <p className="text-sm font-semibold text-navy-950">Bạn là</p>
+              <p className="text-sm font-semibold text-navy-950">{t("customerType.label")}</p>
               <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                {customerTypes.map((c) => (
-                  <button
-                    type="button"
-                    key={c.key}
-                    onClick={() => setCustomerType(c.key)}
-                    className={`flex items-center gap-3 rounded-2xl border-2 px-4 py-3 text-left transition-colors ${
-                      customerType === c.key
-                        ? "border-brand-600 bg-brand-50 text-brand-800"
-                        : "border-slate-100 text-slate-600 hover:border-slate-200"
-                    }`}
-                  >
-                    <c.icon className="h-5 w-5 flex-none" />
-                    <span className="text-sm font-semibold">{c.label}</span>
-                  </button>
-                ))}
+                {customerTypeKeys.map((key) => {
+                  const Icon = customerTypeIcons[key];
+                  const labelKey = key === "ho-gia-dinh" ? "hoGiaDinh" : key === "doanh-nghiep" ? "doanhNghiep" : "nhaXuong";
+                  return (
+                    <button
+                      type="button"
+                      key={key}
+                      onClick={() => setCustomerType(key)}
+                      className={`flex items-center gap-3 rounded-2xl border-2 px-4 py-3 text-left transition-colors ${
+                        customerType === key
+                          ? "border-brand-600 bg-brand-50 text-brand-800"
+                          : "border-slate-100 text-slate-600 hover:border-slate-200"
+                      }`}
+                    >
+                      <Icon className="h-5 w-5 flex-none" />
+                      <span className="text-sm font-semibold">{t(`customerType.${labelKey}`)}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <p className="text-sm font-semibold text-navy-950">Giá điện trả hàng tháng</p>
+                <p className="text-sm font-semibold text-navy-950">{t("tariff.label")}</p>
                 <select
                   value={tariffType}
                   onChange={(e) => setTariffType(e.target.value as TariffType)}
                   className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2"
                 >
-                  {tariffTypes.map((t) => (
-                    <option key={t.key} value={t.key}>
-                      {t.label}
-                    </option>
-                  ))}
+                  {tariffTypeKeys.map((key) => {
+                    const labelKey = key === "sinh-hoat" ? "sinhHoat" : key === "kinh-doanh" ? "kinhDoanh" : "sanXuat";
+                    return (
+                      <option key={key} value={key}>
+                        {t(`tariff.${labelKey}`)}
+                      </option>
+                    );
+                  })}
                 </select>
-                {tariffType !== "sinh-hoat" && (
-                  <p className="mt-1.5 text-xs text-amber-600">
-                    *Đơn giá bình quân tham khảo, giá thực tế theo khung giờ sẽ được tư vấn chính xác khi khảo sát.
-                  </p>
-                )}
+                {tariffType !== "sinh-hoat" && <p className="mt-1.5 text-xs text-amber-600">{t("tariff.note")}</p>}
               </div>
               <div>
-                <p className="text-sm font-semibold text-navy-950">Điện sử dụng</p>
+                <p className="text-sm font-semibold text-navy-950">{t("phase.label")}</p>
                 <select
                   value={phase}
                   onChange={(e) => setPhase(e.target.value as PhaseType)}
                   className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2"
                 >
-                  {phaseTypes.map((p) => (
-                    <option key={p.key} value={p.key}>
-                      {p.label}
+                  {phaseTypeKeys.map((key) => (
+                    <option key={key} value={key}>
+                      {t(`phase.${key === "1-pha" ? "onePhase" : "threePhase"}`)}
                     </option>
                   ))}
                 </select>
-                <p className="mt-1.5 text-xs text-slate-400">*Thông tin tham khảo, không giới hạn công suất đề xuất.</p>
+                <p className="mt-1.5 text-xs text-slate-400">{t("phase.note")}</p>
               </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-navy-950">Mức tiêu thụ điện hàng tháng</p>
+                <p className="text-sm font-semibold text-navy-950">{t("consumption.label")}</p>
                 <div className="flex rounded-full bg-slate-100 p-1 text-xs font-semibold">
                   <button
                     type="button"
@@ -255,7 +255,7 @@ export function CalculatorForm() {
                       mode === "bill" ? "bg-white text-brand-700 shadow-sm" : "text-slate-500"
                     }`}
                   >
-                    Theo tiền điện
+                    {t("consumption.byBill")}
                   </button>
                   <button
                     type="button"
@@ -264,7 +264,7 @@ export function CalculatorForm() {
                       mode === "kwh" ? "bg-white text-brand-700 shadow-sm" : "text-slate-500"
                     }`}
                   >
-                    Theo số kWh
+                    {t("consumption.byKwh")}
                   </button>
                 </div>
               </div>
@@ -279,14 +279,14 @@ export function CalculatorForm() {
                       value={billVnd}
                       onChange={(e) => setBillVnd(e.target.value)}
                       className="w-full rounded-xl border border-slate-200 px-4 py-3.5 pr-16 text-lg font-semibold text-navy-950 outline-none ring-brand-500 focus:ring-2"
-                      placeholder="VD: 2.000.000"
+                      placeholder={t("consumption.billPlaceholder")}
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
-                      đ / tháng
+                      {t("consumption.billUnit")}
                     </span>
                   </div>
                   <p className="mt-2 text-xs text-slate-500">
-                    Tương đương ~{monthlyKwh.toLocaleString("vi-VN")} kWh/tháng (ước tính)
+                    {t("consumption.equivKwh", { value: monthlyKwh.toLocaleString(locale) })}
                   </p>
                 </div>
               ) : (
@@ -299,22 +299,22 @@ export function CalculatorForm() {
                       value={kwh}
                       onChange={(e) => setKwh(e.target.value)}
                       className="w-full rounded-xl border border-slate-200 px-4 py-3.5 pr-16 text-lg font-semibold text-navy-950 outline-none ring-brand-500 focus:ring-2"
-                      placeholder="VD: 700"
+                      placeholder={t("consumption.kwhPlaceholder")}
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
-                      kWh / tháng
+                      {t("consumption.kwhUnit")}
                     </span>
                   </div>
-                  <p className="mt-2 text-xs text-slate-500">Tương đương ~{formatVnd(derivedBill)}/tháng</p>
+                  <p className="mt-2 text-xs text-slate-500">
+                    {t("consumption.equivBill", { value: formatVnd(derivedBill, locale) })}
+                  </p>
                 </div>
               )}
             </div>
 
             <div>
               <div className="flex items-center justify-between">
-                <p className="flex items-center gap-1.5 text-sm font-semibold text-navy-950">
-                  Mức sử dụng điện từ 6h đến 18h
-                </p>
+                <p className="flex items-center gap-1.5 text-sm font-semibold text-navy-950">{t("daytime.label")}</p>
                 <span className="text-sm font-bold text-brand-600">{daytimePercent}%</span>
               </div>
               <input
@@ -328,39 +328,37 @@ export function CalculatorForm() {
               />
               <div className="mt-2 flex items-center justify-between text-xs text-slate-500">
                 <span className="flex items-center gap-1">
-                  <Sun className="h-3.5 w-3.5 text-sun-500" /> Ban ngày {daytimePercent}%
+                  <Sun className="h-3.5 w-3.5 text-sun-500" /> {t("daytime.day", { value: daytimePercent })}
                 </span>
                 <span className="flex items-center gap-1">
-                  Buổi tối {100 - daytimePercent}% <Moon className="h-3.5 w-3.5 text-brand-500" />
+                  {t("daytime.night", { value: 100 - daytimePercent })} <Moon className="h-3.5 w-3.5 text-brand-500" />
                 </span>
               </div>
-              <p className="mt-2 text-xs text-slate-500">
-                Dùng để tính dung lượng pin lưu trữ cần thiết cho phần điện sử dụng ngoài giờ nắng.
-              </p>
+              <p className="mt-2 text-xs text-slate-500">{t("daytime.note")}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <p className="text-sm font-semibold text-navy-950">Loại mái</p>
+                <p className="text-sm font-semibold text-navy-950">{t("roof.label")}</p>
                 <select
                   value={roofType}
                   onChange={(e) => setRoofType(e.target.value as RoofType)}
                   className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2"
                 >
-                  {roofTypes.map((r) => (
-                    <option key={r.key} value={r.key}>
-                      {r.label}
+                  {roofTypeKeys.map((key) => (
+                    <option key={key} value={key}>
+                      {t(`roof.${key}`)}
                     </option>
                   ))}
                 </select>
               </div>
               <div>
-                <p className="text-sm font-semibold text-navy-950">Tỉnh / thành (không bắt buộc)</p>
+                <p className="text-sm font-semibold text-navy-950">{t("province.label")}</p>
                 <input
                   type="text"
                   value={province}
                   onChange={(e) => setProvince(e.target.value)}
-                  placeholder="VD: TP. Hồ Chí Minh"
+                  placeholder={t("province.placeholder")}
                   className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2"
                 />
               </div>
@@ -368,7 +366,7 @@ export function CalculatorForm() {
 
             <div>
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-navy-950">Mức độ tự chủ điện mong muốn</p>
+                <p className="text-sm font-semibold text-navy-950">{t("offset.label")}</p>
                 <span className="text-sm font-bold text-brand-600">{offsetPercent}%</span>
               </div>
               <input
@@ -380,15 +378,13 @@ export function CalculatorForm() {
                 onChange={(e) => setOffsetPercent(Number(e.target.value))}
                 className="mt-3 w-full accent-brand-600"
               />
-              <p className="mt-2 text-xs text-slate-500">
-                Tỷ lệ sản lượng điện mặt trời dự kiến bù đắp cho nhu cầu sử dụng hàng tháng của bạn.
-              </p>
+              <p className="mt-2 text-xs text-slate-500">{t("offset.note")}</p>
             </div>
 
             <div>
               <div className="flex items-center gap-1.5">
                 <BatteryCharging className="h-4 w-4 text-brand-600" />
-                <p className="text-sm font-semibold text-navy-950">Bộ lưu điện</p>
+                <p className="text-sm font-semibold text-navy-950">{t("battery.label")}</p>
               </div>
               <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <select
@@ -396,12 +392,15 @@ export function CalculatorForm() {
                   onChange={(e) => setBatterySlugOverride(e.target.value || null)}
                   className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-navy-950 outline-none ring-brand-500 focus:ring-2 sm:max-w-sm"
                 >
-                  <option value="">Không lắp</option>
-                  {batteryOptions.map((b) => (
-                    <option key={b.slug} value={b.slug}>
-                      {b.name} - {formatVnd(b.price!)}
-                    </option>
-                  ))}
+                  <option value="">{t("battery.none")}</option>
+                  {batteryOptions.map((b) => {
+                    const lb = getLocalizedProduct(b, locale);
+                    return (
+                      <option key={b.slug} value={b.slug}>
+                        {lb.name} - {formatVnd(b.price!, locale)}
+                      </option>
+                    );
+                  })}
                 </select>
                 {!isBatteryAuto && (
                   <button
@@ -409,23 +408,22 @@ export function CalculatorForm() {
                     onClick={() => setBatterySlugOverride(undefined)}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700"
                   >
-                    <RotateCcw className="h-3.5 w-3.5" /> Dùng đề xuất tự động
+                    <RotateCcw className="h-3.5 w-3.5" /> {t("battery.useAuto")}
                   </button>
                 )}
               </div>
               <p className="mt-2 text-xs text-slate-500">
                 {isBatteryAuto ? (
                   batterySuggestion.product ? (
-                    <>
-                      Hệ thống tự đề xuất <b>{selectedBatteryProduct?.name}</b> (cần tối thiểu ~
-                      {batterySuggestion.neededCapacityKwh} kWh) dựa trên lượng điện buổi tối và mức tự chủ bạn chọn ở
-                      trên - bạn có thể chỉnh lại nếu muốn.
-                    </>
+                    t("battery.autoNote", {
+                      product: localizedSelectedBattery?.name ?? "",
+                      kwh: batterySuggestion.neededCapacityKwh,
+                    })
                   ) : (
-                    "Với mức sử dụng hiện tại, bạn chưa cần lắp pin lưu trữ - bạn có thể tự chọn nếu muốn dự phòng thêm."
+                    t("battery.noneNeeded")
                   )
                 ) : (
-                  "Bạn đã tự chọn pin lưu trữ, khác với mức đề xuất tự động."
+                  t("battery.manualNote")
                 )}
               </p>
             </div>
@@ -436,7 +434,7 @@ export function CalculatorForm() {
               type="submit"
               className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-brand-600/25 transition-colors hover:bg-brand-700"
             >
-              Xem kết quả ước tính <Zap className="h-5 w-5" />
+              {t("submitStep1")} <Zap className="h-5 w-5" />
             </button>
           </form>
         )}
@@ -445,53 +443,50 @@ export function CalculatorForm() {
           <form onSubmit={handleStep2Submit} className="space-y-6">
             <div className="flex items-start gap-3 rounded-2xl bg-brand-50 p-4">
               <Lock className="mt-0.5 h-5 w-5 flex-none text-brand-600" />
-              <p className="text-sm leading-relaxed text-brand-800">
-                Vui lòng để lại thông tin liên hệ để nhận ngay kết quả ước tính công suất, chi phí đầu tư và thời
-                gian hoàn vốn. Đội ngũ tư vấn sẽ liên hệ để khảo sát và đưa ra báo giá chính xác.
-              </p>
+              <p className="text-sm leading-relaxed text-brand-800">{t("step2Intro")}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div>
-                <label className="text-sm font-semibold text-navy-950">Họ và tên *</label>
+                <label className="text-sm font-semibold text-navy-950">{t("form.name")}</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-                  placeholder="Nguyễn Văn A"
+                  placeholder={t("form.namePlaceholder")}
                   required
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-navy-950">Số điện thoại *</label>
+                <label className="text-sm font-semibold text-navy-950">{t("form.phone")}</label>
                 <input
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-                  placeholder="0901 234 567"
+                  placeholder={t("form.phonePlaceholder")}
                   required
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-navy-950">Email (không bắt buộc)</label>
+                <label className="text-sm font-semibold text-navy-950">{t("form.email")}</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-                  placeholder="email@example.com"
+                  placeholder={t("form.emailPlaceholder")}
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-navy-950">Khu vực lắp đặt (không bắt buộc)</label>
+                <label className="text-sm font-semibold text-navy-950">{t("form.address")}</label>
                 <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none ring-brand-500 focus:ring-2"
-                  placeholder="Số nhà, đường, quận/huyện..."
+                  placeholder={t("form.addressPlaceholder")}
                 />
               </div>
             </div>
@@ -504,7 +499,7 @@ export function CalculatorForm() {
                 onClick={() => setStep(1)}
                 className="rounded-full border border-slate-200 px-6 py-4 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-50"
               >
-                Quay lại
+                {t("form.back")}
               </button>
               <button
                 type="submit"
@@ -513,99 +508,106 @@ export function CalculatorForm() {
               >
                 {submitting ? (
                   <>
-                    <Loader2 className="h-5 w-5 animate-spin" /> Đang gửi...
+                    <Loader2 className="h-5 w-5 animate-spin" /> {t("form.submitting")}
                   </>
                 ) : (
-                  "Nhận kết quả ước tính"
+                  t("form.submit")
                 )}
               </button>
             </div>
-            <p className="text-center text-xs text-slate-400">
-              Thông tin của bạn được bảo mật và chỉ dùng để tư vấn lắp đặt điện mặt trời.
-            </p>
+            <p className="text-center text-xs text-slate-400">{t("form.privacyNote")}</p>
           </form>
         )}
 
-        {step === 3 && result && (
+        {step === 3 && result && localizedPanel && (
           <div className="space-y-8">
             <div className="flex items-center gap-3 rounded-2xl bg-emerald-50 p-4">
               <CheckCircle2 className="h-6 w-6 flex-none text-emerald-600" />
-              <p className="text-sm font-medium text-emerald-800">
-                Cảm ơn {name}! Đây là kết quả ước tính dựa trên thông tin bạn cung cấp. Đội ngũ kỹ thuật sẽ liên hệ
-                số {phone} trong vòng 24h để khảo sát và tư vấn chi tiết.
-              </p>
+              <p className="text-sm font-medium text-emerald-800">{t("result.thankYou", { name, phone })}</p>
             </div>
 
             {result.exceedsCatalog ? (
               <div className="rounded-2xl bg-amber-50 p-5">
                 <p className="text-sm font-semibold text-amber-900">
-                  Hệ thống của bạn cần công suất {result.actualKwp} kWp - vượt quá dải biến tần 1 pha hiện có (tối đa
-                  10kW). Đây là quy mô cần thiết bị 3 pha / công suất lớn hơn, đội ngũ kỹ thuật sẽ khảo sát và tư vấn
-                  thiết bị phù hợp riêng cho bạn.
+                  {t("result.exceedsWarning", { kwp: result.actualKwp })}
                 </p>
               </div>
             ) : null}
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <ResultCard label="Công suất dàn pin" value={`${result.actualKwp} kWp`} icon={Zap} highlight />
-              <ResultCard label="Số lượng tấm pin" value={`${result.panelCount} tấm (${result.panelProduct.name})`} icon={Home} />
+              <ResultCard label={t("result.panelPower")} value={`${result.actualKwp} kWp`} icon={Zap} highlight />
               <ResultCard
-                label="Biến tần"
-                value={result.inverterProduct ? `${result.inverterProduct.name}` : "Cần tư vấn riêng"}
+                label={t("result.panelCount")}
+                value={t("result.panelCountUnit", { count: result.panelCount, product: localizedPanel.name })}
+                icon={Home}
+              />
+              <ResultCard
+                label={t("result.inverter")}
+                value={localizedInverter ? localizedInverter.name : t("result.inverterContact")}
                 icon={CircuitBoard}
               />
-              <ResultCard label="Pin lưu trữ" value={result.batteryProduct ? result.batteryProduct.name : "Không lắp"} icon={Battery} />
+              <ResultCard
+                label={t("result.battery")}
+                value={localizedBattery ? localizedBattery.name : t("result.batteryNone")}
+                icon={Battery}
+              />
               {!result.exceedsCatalog && (
                 <>
-                  <ResultCard label="Chi phí đầu tư ước tính" value={formatVndCompact(result.estimatedInvestmentVnd)} icon={Wallet} />
-                  <ResultCard label="Tiết kiệm mỗi tháng" value={formatVndCompact(result.estimatedMonthlySavingsVnd)} icon={CheckCircle2} />
-                  <ResultCard label="Thời gian hoàn vốn" value={`~${result.paybackYears} năm`} icon={Zap} />
+                  <ResultCard label={t("result.investment")} value={formatVndCompact(result.estimatedInvestmentVnd, locale)} icon={Wallet} />
+                  <ResultCard
+                    label={t("result.monthlySavings")}
+                    value={formatVndCompact(result.estimatedMonthlySavingsVnd, locale)}
+                    icon={CheckCircle2}
+                  />
+                  <ResultCard label={t("result.payback")} value={t("result.paybackUnit", { years: result.paybackYears })} icon={Zap} />
                 </>
               )}
-              <ResultCard label="Giảm phát thải CO2" value={`~${result.co2ReducedTonPerYear} tấn/năm`} icon={Leaf} />
+              <ResultCard
+                label={t("result.co2")}
+                value={t("result.co2Unit", { value: result.co2ReducedTonPerYear })}
+                icon={Leaf}
+              />
             </div>
 
             {!result.exceedsCatalog && (
               <div className="rounded-2xl border border-slate-100 bg-white p-5">
-                <p className="text-sm font-semibold text-navy-950">Chi tiết chi phí đầu tư</p>
+                <p className="text-sm font-semibold text-navy-950">{t("result.breakdownTitle")}</p>
                 <ul className="mt-3 space-y-2 text-sm">
                   <li className="flex items-center justify-between">
-                    <span className="text-slate-500">Tấm pin ({result.panelCount} tấm)</span>
-                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.panelCostVnd)}</span>
+                    <span className="text-slate-500">{t("result.breakdownPanel", { count: result.panelCount })}</span>
+                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.panelCostVnd, locale)}</span>
                   </li>
                   <li className="flex items-center justify-between">
-                    <span className="text-slate-500">Biến tần</span>
-                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.inverterCostVnd)}</span>
+                    <span className="text-slate-500">{t("result.breakdownInverter")}</span>
+                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.inverterCostVnd, locale)}</span>
                   </li>
                   <li className="flex items-center justify-between">
-                    <span className="text-slate-500">Pin lưu trữ</span>
+                    <span className="text-slate-500">{t("result.breakdownBattery")}</span>
                     <span className="font-semibold text-navy-950">
-                      {result.costBreakdown.batteryCostVnd > 0 ? formatVnd(result.costBreakdown.batteryCostVnd) : "-"}
+                      {result.costBreakdown.batteryCostVnd > 0 ? formatVnd(result.costBreakdown.batteryCostVnd, locale) : "-"}
                     </span>
                   </li>
                   <li className="flex items-center justify-between">
-                    <span className="text-slate-500">Công lắp đặt</span>
-                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.laborCostVnd)}</span>
+                    <span className="text-slate-500">{t("result.breakdownLabor")}</span>
+                    <span className="font-semibold text-navy-950">{formatVnd(result.costBreakdown.laborCostVnd, locale)}</span>
                   </li>
                   <li className="flex items-center justify-between border-t border-slate-100 pt-2 text-base">
-                    <span className="font-bold text-navy-950">Tổng cộng</span>
-                    <span className="font-extrabold text-brand-600">{formatVnd(result.estimatedInvestmentVnd)}</span>
+                    <span className="font-bold text-navy-950">{t("result.breakdownTotal")}</span>
+                    <span className="font-extrabold text-brand-600">{formatVnd(result.estimatedInvestmentVnd, locale)}</span>
                   </li>
                 </ul>
               </div>
             )}
 
             <div className="rounded-2xl border border-dashed border-slate-200 p-5 text-xs leading-relaxed text-slate-500">
-              *Kết quả chỉ mang tính chất tham khảo, dựa trên thông số trung bình về bức xạ mặt trời và biểu giá
-              điện hiện hành. Chi phí, công suất dàn pin, biến tần và pin lưu trữ thực tế có thể thay đổi sau khi
-              đội ngũ kỹ thuật khảo sát trực tiếp diện tích mái, hướng nắng và nhu cầu sử dụng của bạn.
+              {t("result.disclaimer")}
             </div>
 
             <a
               href={`tel:${siteConfig.hotlineRaw}`}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-6 py-4 text-base font-semibold text-navy-950 shadow-lg shadow-sun-500/25 transition-colors hover:bg-sun-400"
             >
-              <PhoneCall className="h-5 w-5" /> Gọi ngay {siteConfig.hotline} để được khảo sát miễn phí
+              <PhoneCall className="h-5 w-5" /> {t("result.callCta", { hotline: siteConfig.hotline })}
             </a>
           </div>
         )}
@@ -615,7 +617,8 @@ export function CalculatorForm() {
 }
 
 function StepIndicator({ step }: { step: Step }) {
-  const labels = ["Thông tin sử dụng điện", "Thông tin liên hệ", "Kết quả ước tính"];
+  const t = useTranslations("calculator.steps");
+  const labels = [t("step1"), t("step2"), t("step3")];
   return (
     <div className="flex items-center justify-center gap-2 sm:gap-4">
       {labels.map((label, i) => {
